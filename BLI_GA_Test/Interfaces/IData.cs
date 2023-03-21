@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLI_GA_Test.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace BLI_GA_Test.Interfaces
 {
     public interface IData<T>
     {
-        List<T> GetData();
+        List<T> FetchData();
     }
 }

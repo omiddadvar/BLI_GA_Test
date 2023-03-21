@@ -1,4 +1,6 @@
-﻿using BLI_GA_Test.Classes.Semantic_Correlation;
+﻿using BLI_GA_Test.Classes.Data;
+using BLI_GA_Test.Classes.Semantic_Correlation;
+using BLI_GA_Test.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,12 +13,9 @@ namespace BLI_GA_Test
     {
         static void Main(string[] args)
         {
-            var Corr = new SemCorrRating();
-            Console.ReadKey();
-            Console.ReadKey();
-            /*
-            Step 1 : Calculate  
-            */
+            var individual = new Individual();
+            individual.MovieList = new RandomMovieList().GetRandomListOfMovieItems();
+            individual.SemCorrRating = new SemCorrRating(individual.MovieList).Compute_SimilarityCorrelation();
         }
     }
 }

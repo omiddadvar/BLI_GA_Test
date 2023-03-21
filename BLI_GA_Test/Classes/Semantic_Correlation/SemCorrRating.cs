@@ -12,27 +12,21 @@ namespace BLI_GA_Test.Classes.Semantic_Correlation
 {
     public class SemCorrRating
     {
-        private List<MovieItem> _individual;
-        public SemCorrRating(List<MovieItem> individual) 
+        private List<MovieItem> _individual_MovieList;
+        public SemCorrRating(List<MovieItem> individual_MovieList) 
         {
-            this._individual = individual;
+            this._individual_MovieList = individual_MovieList;
         }
-        //private void _getInitialData()
-        //{
-        //    var dataReader = new InitialData();
-        //    _movieItems = dataReader.GetData();
-        //    dataReader.Dispose();
-        //}
         public double Compute_SimilarityCorrelation()
         {
             double SemanticSimilarityCorrelation = 0;
-            for(int i = 0; i < _individual.Count(); i++)
+            for(int i = 0; i < _individual_MovieList.Count(); i++)
             {
-                for (int j = i; j < _individual.Count(); j++)
+                for (int j = i; j < _individual_MovieList.Count(); j++)
                 {
-                    //  SemSimI(A,B) = SemSimI(B,A) 
+                    //  SemSimI(A,B) = SemSimI(B,A)
                     //  SemCorrRating(ind) = semSimI(A,B) + semSimI(B,C) + semSimI(A,C)
-                    var SemSimI = new SemSimInd(_individual[i] , _individual[j]);
+                    var SemSimI = new SemSimInd(_individual_MovieList[i] , _individual_MovieList[j]);
                     SemanticSimilarityCorrelation += SemSimI.Calculate_Similarity();
                 }
             }

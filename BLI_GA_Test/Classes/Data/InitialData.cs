@@ -11,19 +11,18 @@ namespace BLI_GA_Test.Classes.Data
 {
     public class InitialData : IData<MovieItem>, IDisposable
     {
+
         private UnitOfWork _unitOfWork;
-        private List<MovieItem> _movieItems;
-        public List<MovieItem> Movies => _movieItems;
 
         public InitialData()
         {
-            _movieItems = new List<MovieItem>();
             _unitOfWork = new UnitOfWork();
         }
-        public List<MovieItem> GetData()
+        public List<MovieItem> FetchData()
         {
             try
             {
+                var movieItems = new List<MovieItem>();
                 var db = _unitOfWork.GetDB();
                 var _movies = db.Movies1.OrderBy(m => m.MovieId).Take(100).ToList();
                 var _movie_genre = db.Movie_Genre.ToList();
@@ -45,9 +44,9 @@ namespace BLI_GA_Test.Classes.Data
                             .Select(t => (int)t.GenreId)
                             .ToArray();
 
-                    _movieItems.Add(tempMovieItem);
+                    movieItems.Add(tempMovieItem);
                 }
-                return _movieItems;
+                return movieItems;
             }
             catch (Exception ex)
             {
