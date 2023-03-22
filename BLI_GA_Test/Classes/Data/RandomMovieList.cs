@@ -28,7 +28,7 @@ namespace BLI_GA_Test.Classes.Data
                 var dataHolder = DataHolder.GetInstance();
                 int MovieListCount = dataHolder.Genes.Count();
 
-                for (int i = 0; i < _configs.ListSize; i++)
+                for (int i = 0; i < _configs.IndividualListSize; i++)
                 {
                     int randomNumber = _RandomNumber(0, MovieListCount);
                     MovieItem item = dataHolder.Genes[randomNumber];

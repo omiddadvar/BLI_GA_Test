@@ -8,7 +8,7 @@ namespace BLI_GA_Test.Models
 {
     public  class ConfigModel
     {
-        public int ListSize { get; set; }
+        public int IndividualListSize { get; set; }
         public Dictionary<string, int> ImportanceDegree { get; set; }
 
         public ConfigModel() 

@@ -25,7 +25,7 @@ namespace BLI_GA_Test.Classes
         {
             ConfigValues = new ConfigModel()
             {
-                ListSize = 10
+                IndividualListSize = 10
             };
             ConfigValues.ImportanceDegree.Add("Importance degree of Tag", 1);
             ConfigValues.ImportanceDegree.Add("Importance degree of Genre", 1);
