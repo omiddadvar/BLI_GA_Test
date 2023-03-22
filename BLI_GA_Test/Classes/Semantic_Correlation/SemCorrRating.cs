@@ -25,7 +25,7 @@ namespace BLI_GA_Test.Classes.Semantic_Correlation
                 for (int j = i; j < _individual_MovieList.Count(); j++)
                 {
                     //  SemSimI(A,B) = SemSimI(B,A)
-                    //  SemCorrRating(ind) = semSimI(A,B) + semSimI(B,C) + semSimI(A,C)
+                    //  SemCorrRating(ind) = semSimI(A,B) + semSimI(A,C) + semSimI(B,C)
                     var SemSimI = new SemSimInd(_individual_MovieList[i] , _individual_MovieList[j]);
                     SemanticSimilarityCorrelation += SemSimI.Calculate_Similarity();
                 }

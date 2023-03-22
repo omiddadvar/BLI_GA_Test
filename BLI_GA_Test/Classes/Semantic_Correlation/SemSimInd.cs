@@ -14,10 +14,14 @@ namespace BLI_GA_Test.Classes.Semantic_Correlation
         int F11, F10, F01;
         int importance_degree_tag = 1,
             importance_degree_genre = 1;
-        public SemSimInd(MovieItem MovieA , MovieItem MovieB) 
+        public SemSimInd(MovieItem MovieA , MovieItem MovieB)
         {
             this._movieA = MovieA;
             this._movieB = MovieB;
+
+            var ConfigValues = Configs.GetInstance().ConfigValues;
+            importance_degree_tag = ConfigValues.ImportanceDegree["Importance degree of Tag"];
+            importance_degree_genre = ConfigValues.ImportanceDegree["Importance degree of Genre"];
         }
         public double Calculate_Similarity()
         {

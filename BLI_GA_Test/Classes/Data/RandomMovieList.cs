@@ -9,8 +9,12 @@ namespace BLI_GA_Test.Classes.Data
 {
     public class RandomMovieList
     {
-        private const int Length_ListOfItems = 10;
+        private ConfigModel _configs;
         private Random _randomGenerator = new Random(DateTime.Now.Millisecond);
+        public RandomMovieList()
+        {
+            _configs = Configs.GetInstance().ConfigValues;
+        }
         private int _RandomNumber(int start, int end)
         {
             int randomNumber = _randomGenerator.Next(start, end);
@@ -22,12 +26,12 @@ namespace BLI_GA_Test.Classes.Data
             {
                 var resultData = new List<MovieItem>();
                 var dataHolder = DataHolder.GetInstance();
-                int MovieListCount = dataHolder.AllMovieItems.Count();
+                int MovieListCount = dataHolder.Genes.Count();
 
-                for (int i = 0; i < Length_ListOfItems; i++)
+                for (int i = 0; i < _configs.ListSize; i++)
                 {
                     int randomNumber = _RandomNumber(0, MovieListCount);
-                    MovieItem item = dataHolder.AllMovieItems[randomNumber];
+                    MovieItem item = dataHolder.Genes[randomNumber];
                     resultData.Add(item);
                 }
                 return resultData;

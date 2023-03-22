@@ -17,7 +17,7 @@ namespace BLI_GA_Test.Classes.Data
             return _instance;
         }
         private List<MovieItem> _allMovieItems;
-        public List<MovieItem> AllMovieItems => _allMovieItems;
+        public List<MovieItem> Genes => _allMovieItems;
         private DataHolder()
         {
             _getAllMovies();
