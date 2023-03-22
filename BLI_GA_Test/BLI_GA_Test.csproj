@@ -91,11 +91,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\ActiveUser.cs" />
     <Compile Include="Classes\Configs.cs" />
     <Compile Include="Classes\Data\DataHolder.cs" />
     <Compile Include="Classes\Data\InitialData.cs" />
     <Compile Include="Classes\Data\PopulationGenerator.cs" />
     <Compile Include="Classes\Data\RandomMovieList.cs" />
+    <Compile Include="Classes\Data\RatingData.cs" />
+    <Compile Include="Classes\Genetic_Operators\Fitness\Jaccard.cs" />
+    <Compile Include="Classes\Genetic_Operators\Fitness\PearsonSim.cs" />
+    <Compile Include="Classes\Genetic_Operators\Fitness\SatRatingFitness.cs" />
+    <Compile Include="Classes\Genetic_Operators\Fitness\SatSimU.cs" />
     <Compile Include="Classes\Semantic_Correlation\SemCorrRating.cs" />
     <Compile Include="Classes\Semantic_Correlation\SemSimInd.cs" />
     <Compile Include="Interfaces\IData.cs" />
@@ -169,7 +175,11 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Classes\Genetic_Operators\CrossOver\" />
+    <Folder Include="Classes\Genetic_Operators\Mutation\" />
+    <Folder Include="Classes\Genetic_Operators\Selection\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -30,7 +30,6 @@ namespace BLI_GA_Test.Classes.Data
                     .ToList();
                 var _movie_genre = db.Movie_Genre.ToList();
                 var _movie_tags = db.Movie_Tag.ToList();
-
                 foreach (var movieEntity in _movies)
                 {
                     var tempMovieItem = new MovieItem()
