@@ -25,10 +25,14 @@ namespace BLI_GA_Test.Classes
         {
             ConfigValues = new ConfigModel()
             {
-                IndividualListSize = 10
+                IndividualListSize = 10,
+                PopulationSize = 100,
+                ImportanceDegree = new Dictionary<string, int>
+                {
+                    {"Importance degree of Tag" , 1},
+                    {"Importance degree of Genre", 1 }
+                }
             };
-            ConfigValues.ImportanceDegree.Add("Importance degree of Tag", 1);
-            ConfigValues.ImportanceDegree.Add("Importance degree of Genre", 1);
         }
     }
 }

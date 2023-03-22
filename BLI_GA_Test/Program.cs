@@ -1,4 +1,5 @@
-﻿using BLI_GA_Test.Classes.Data;
+﻿using BLI_GA_Test.Classes;
+using BLI_GA_Test.Classes.Data;
 using BLI_GA_Test.Classes.Semantic_Correlation;
 using BLI_GA_Test.Models;
 using System;
@@ -13,9 +14,14 @@ namespace BLI_GA_Test
     {
         static void Main(string[] args)
         {
-            var individual = new Individual();
-            individual.MovieList = new RandomMovieList().GetRandomListOfMovieItems();
-            individual.SemCorrRating = new SemCorrRating(individual.MovieList).Compute_SimilarityCorrelation();
+            var configs = Configs.GetInstance().ConfigValues;
+            var population = new PopulationGenerator().Generate();
+            //Top 10% best individuals according to Semantic-Correlation by "Tag,Genre"
+            var TopBestIndividuals_Correlation = population
+                .OrderByDescending(ind => ind.SemCorrRating)
+                .Take((int)(configs.PopulationSize * 0.10))
+                .ToList();
+
         }
     }
 }

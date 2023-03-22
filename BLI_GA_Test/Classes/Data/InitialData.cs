@@ -24,7 +24,10 @@ namespace BLI_GA_Test.Classes.Data
             {
                 var movieItems = new List<MovieItem>();
                 var db = _unitOfWork.GetDB();
-                var _movies = db.Movies1.OrderBy(m => m.MovieId).Take(100).ToList();
+                var _movies = db.Movies1
+                    .OrderBy(m => m.MovieId)
+                    //.Take(100)
+                    .ToList();
                 var _movie_genre = db.Movie_Genre.ToList();
                 var _movie_tags = db.Movie_Tag.ToList();
 
