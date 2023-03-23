@@ -1,4 +1,5 @@
 ﻿using BLI_GA_Test.Classes.Data;
+using BLI_GA_Test.Interfaces;
 using BLI_GA_Test.Models;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BLI_GA_Test.Classes.Genetic_Operators.Fitness
 {
-    public class Jaccard
+    public class Jaccard : IComputable<double>
     {
         private int _userId;
         private ActiveUser AU;
