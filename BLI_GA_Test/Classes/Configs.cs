@@ -26,7 +26,7 @@ namespace BLI_GA_Test.Classes
             ConfigValues = new ConfigModel()
             {
                 IndividualListSize = 10,
-                PopulationSize = 100,
+                PopulationSize = 1000,
                 ImportanceDegree = new Dictionary<string, int>
                 {
                     {"Importance degree of Tag" , 1},
