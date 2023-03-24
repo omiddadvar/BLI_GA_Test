@@ -12,5 +12,6 @@ namespace BLI_GA_Test.Models
         public string Name { get; set; }
         public int[] Tags { get; set; }
         public int[] Genre { get; set; }
-    }
+        public double similarityDegree { get; set; }
+	}
 }

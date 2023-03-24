@@ -22,12 +22,16 @@ namespace BLI_GA_Test.Classes.Data
         private List<Rating> _ratings;
         public List<Rating> Ratings => _ratings;
 
-        private long _maxRatingID = -1;
+		private List<User> _users;
+		public List<User> Users => _users;
+
+		private long _maxRatingID = -1;
         public long MaxRatingID => _maxRatingID;
         private DataHolder()
         {
             _getAllMovies();
             _getRatingData();
+            _getUserData();
             _maxRatingID = _ratings.OrderByDescending(r => r.RatingId).First().RatingId;
         }
         private void _getAllMovies()
@@ -40,5 +44,11 @@ namespace BLI_GA_Test.Classes.Data
             var dataReader = new RatingData();
             _ratings = dataReader.FetchData();
         }
-    }
+
+		private void _getUserData()
+		{
+			var dataReader = new UserData();
+			_users = dataReader.FetchData();
+		}
+	}
 }

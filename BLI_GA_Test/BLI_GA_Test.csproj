@@ -98,6 +98,7 @@
     <Compile Include="Classes\Data\PopulationGenerator.cs" />
     <Compile Include="Classes\Data\RandomMovieList.cs" />
     <Compile Include="Classes\Data\RatingData.cs" />
+    <Compile Include="Classes\Data\UserData.cs" />
     <Compile Include="Classes\Genetic_Operators\Fitness\Jaccard.cs" />
     <Compile Include="Classes\Genetic_Operators\Fitness\PearsonSim.cs" />
     <Compile Include="Classes\Genetic_Operators\Fitness\SatRatingFitness.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="Classes\Genetic_Operators\GeneticOperations.cs" />
     <Compile Include="Classes\Semantic_Correlation\SemCorrRating.cs" />
     <Compile Include="Classes\Semantic_Correlation\SemSimInd.cs" />
+    <Compile Include="Classes\Similarity\SimilarityUser.cs" />
     <Compile Include="Interfaces\IComputable.cs" />
     <Compile Include="Interfaces\IData.cs" />
     <Compile Include="Models\ConfigModel.cs" />
@@ -146,6 +148,7 @@
     <Compile Include="Models\Tag.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\User.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
