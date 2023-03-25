@@ -22,7 +22,10 @@ namespace BLI_GA_Test
             dataHolder.Users_With_Similarity = new UserSimilarity().Compute();
 
             var population = new PopulationGenerator().Generate();
-
+            foreach (var ind in population)
+            {
+                ind.Fitness =  new IndividualFitness(ind).Compute();
+            }
             //Sort population according to Semantic-Correlation by "Tag,Genre"
             population = population
                 .OrderByDescending(ind => ind.Fitness)

@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace BLI_GA_Test.Classes.Genetic_Operators.Fitness
 {
-    public class IndividualFitness
+    public class IndividualFitness : IComputable<double>
     {
         private Individual _individual;
         int _ImportanceDegree_Semantic,
             _ImportanceDegree_UsersSimilarity;
-        public IndividualFitness(ref Individual individual) 
+        public IndividualFitness(Individual individual) 
         {
             _individual = individual;
             var config = Configs.GetInstance().ConfigValues;
@@ -23,12 +23,11 @@ namespace BLI_GA_Test.Classes.Genetic_Operators.Fitness
                 config.ImportanceDegree_Fitness["Importance degree of Users Similarity"];
         }
 
-        public void Compute()
+        public double Compute()
         {
             double UsersSimFitnessValue = new SatRatingFitness(_individual).Compute();
-            _individual.Fitness =
-                UsersSimFitnessValue * _ImportanceDegree_UsersSimilarity +
-                _individual.SemCorrRating * _ImportanceDegree_Semantic;
+            return (UsersSimFitnessValue * _ImportanceDegree_UsersSimilarity +
+                _individual.SemCorrRating * _ImportanceDegree_Semantic);
         }
     }
 }
