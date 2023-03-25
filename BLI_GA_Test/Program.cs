@@ -1,6 +1,7 @@
 ﻿using BLI_GA_Test.Classes;
 using BLI_GA_Test.Classes.Data;
 using BLI_GA_Test.Classes.Genetic_Operators;
+using BLI_GA_Test.Classes.Genetic_Operators.Fitness;
 using BLI_GA_Test.Classes.Semantic_Correlation;
 using BLI_GA_Test.Models;
 using System;
@@ -16,6 +17,10 @@ namespace BLI_GA_Test
         static void Main(string[] args)
         {
             var configs = Configs.GetInstance().ConfigValues;
+
+            var dataHolder = DataHolder.GetInstance();
+            dataHolder.Users_With_Similarity = new UserSimilarity().Compute();
+
             var population = new PopulationGenerator().Generate();
 
             //Sort population according to Semantic-Correlation by "Tag,Genre"

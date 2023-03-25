@@ -11,10 +11,12 @@ namespace BLI_GA_Test.Models
         public int IndividualListSize { get; set; }
         public int PopulationSize { get; set; }
         public Dictionary<string, int> ImportanceDegree { get; set; }
+        public Dictionary<string, int> ImportanceDegree_Fitness { get; set; }
 
         public ConfigModel() 
         {
             ImportanceDegree = new Dictionary<string, int>();
+            ImportanceDegree_Fitness = new Dictionary<string, int>();
         }
     }
 }

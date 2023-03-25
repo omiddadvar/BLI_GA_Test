@@ -26,11 +26,10 @@ namespace BLI_GA_Test.Classes.Data
 			{
 				List<User> Users= new List<User>();
 				var db = _unitOfWork.GetDB();
-				var _userIds = db.Ratings.Select(r => r.UserId).Distinct().ToArray();
-				foreach ( var userid in _userIds)
+				var userIds = db.Ratings.Select(r => r.UserId).Distinct().ToArray();
+				foreach ( var userid in userIds)
 				{
-					var RatedMovieIds= db.Ratings.Where(r=> r.UserId== userid).Select(r => r.MovieId).Distinct().ToList<int>();
-					var lRatedMovieItems = DataHolder.GetInstance().Genes.FindAll(l => RatedMovieIds.Contains(l.MovieId));
+					var lRatedMovieItems = db.Ratings.Where(r => r.UserId.Equals(userid)).ToList();
 					Users.Add(new User() { Id = userid, RatedMovieItems = lRatedMovieItems });
 				}
 				return Users;

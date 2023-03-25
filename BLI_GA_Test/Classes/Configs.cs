@@ -29,8 +29,13 @@ namespace BLI_GA_Test.Classes
                 PopulationSize = 1000,
                 ImportanceDegree = new Dictionary<string, int>
                 {
-                    {"Importance degree of Tag" , 1},
-                    {"Importance degree of Genre", 1 }
+                    { "Importance degree of Tag", 1 },
+                    { "Importance degree of Genre", 1 }
+                },
+                ImportanceDegree_Fitness = new Dictionary<string, int>
+                {
+                    {"Importance degree of Semantic Correlation" , 1},
+                    {"Importance degree of Users Similarity", 1 }
                 }
             };
         }

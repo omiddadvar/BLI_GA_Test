@@ -24,6 +24,7 @@ namespace BLI_GA_Test.Classes.Data
 
 		private List<User> _users;
 		public List<User> Users => _users;
+		public List<User> Users_With_Similarity { get; set; }
 
 		private long _maxRatingID = -1;
         public long MaxRatingID => _maxRatingID;
