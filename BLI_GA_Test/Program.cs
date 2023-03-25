@@ -25,17 +25,18 @@ namespace BLI_GA_Test
 
             //Sort population according to Semantic-Correlation by "Tag,Genre"
             population = population
-                .OrderByDescending(ind => ind.SemCorrRating)
-                .ToList();
-            
-            //Top 10% best individuals according to Semantic-Correlation by "Tag,Genre"
-            var TopBestIndividuals_Correlation = population
-                .Take((int)(configs.PopulationSize * 0.10))
+                .OrderByDescending(ind => ind.Fitness)
                 .ToList();
 
-            var newGeneration = new GeneticOperations(ref TopBestIndividuals_Correlation)
+            int topBestIndNumber = (int)(configs.PopulationSize * 0.10);
+            //Top 10% best individuals according to Semantic-Correlation by "Tag,Genre"
+            var newGeneration = population
+                .Take(topBestIndNumber)
+                .ToList();
+
+            newGeneration.Union(new GeneticOperations(ref population, topBestIndNumber)
                 .Apply()
-                .GetNewGeneration();
+                .GetNewGeneration());
         }
     }
 }

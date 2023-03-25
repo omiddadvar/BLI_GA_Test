@@ -9,32 +9,25 @@ namespace BLI_GA_Test.Classes.Genetic_Operators
 {
     public class GeneticOperations
     {
-        private List<Individual> _population, _newGeneration, _rest80percent; 
-        public GeneticOperations(ref List<Individual> population) 
+        private ConfigModel _configs;
+        private List<Individual> _population, _newGeneration; 
+        public GeneticOperations(ref List<Individual> population , int TopPercent) 
         {
-            _population = population;
+            _configs = Configs.GetInstance().ConfigValues;
             _newGeneration = new List<Individual>();
+
+            _population = population
+                 .OrderBy(ind => ind.Fitness)
+                 .Take((int)(_configs.PopulationSize - TopPercent))
+                 .ToList();
         }
         public GeneticOperations Apply()
         {
-            _splitGeneration();
             _apply_CrossOver();
             _apply_Mutation();
             return this;
         }
         public List<Individual> GetNewGeneration() => _newGeneration;
-
-        private void _splitGeneration()
-        {
-            int countTop20_ForNextGenenration = (int)(_population.Count() * 0.20);
-            int countRest80_ForApplyingGeneticOperators = _population.Count() - countTop20_ForNextGenenration;
-            _newGeneration = _population
-                .Take(countTop20_ForNextGenenration)
-                .ToList();
-            _rest80percent = _population
-                .Take(countRest80_ForApplyingGeneticOperators)
-                .ToList();
-        }
         private void _apply_CrossOver()
         {
 
