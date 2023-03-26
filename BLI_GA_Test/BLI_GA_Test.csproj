@@ -99,6 +99,7 @@
     <Compile Include="Classes\Data\RandomMovieList.cs" />
     <Compile Include="Classes\Data\RatingData.cs" />
     <Compile Include="Classes\Data\UserData.cs" />
+    <Compile Include="Classes\Genetic_Operators\CrossOver\CrossOver.cs" />
     <Compile Include="Classes\Genetic_Operators\Fitness\IndividualFitness.cs" />
     <Compile Include="Classes\Genetic_Operators\Fitness\Jaccard.cs" />
     <Compile Include="Classes\Genetic_Operators\Fitness\PearsonSim.cs" />
@@ -109,6 +110,8 @@
     <Compile Include="Classes\Semantic_Correlation\SemCorrRating.cs" />
     <Compile Include="Classes\Semantic_Correlation\SemSimInd.cs" />
     <Compile Include="Classes\Similarity\SimilarityUser.cs" />
+    <Compile Include="Classes\Utility\RandomUtility.cs" />
+    <Compile Include="Interfaces\IAppliable.cs" />
     <Compile Include="Interfaces\IComputable.cs" />
     <Compile Include="Interfaces\IData.cs" />
     <Compile Include="Models\ConfigModel.cs" />
@@ -183,7 +186,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Classes\Genetic_Operators\CrossOver\" />
     <Folder Include="Classes\Genetic_Operators\Mutation\" />
     <Folder Include="Classes\Genetic_Operators\Selection\" />
   </ItemGroup>

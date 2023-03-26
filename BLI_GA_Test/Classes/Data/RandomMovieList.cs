@@ -1,4 +1,5 @@
-﻿using BLI_GA_Test.Models;
+﻿using BLI_GA_Test.Classes.Utility;
+using BLI_GA_Test.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,15 +11,9 @@ namespace BLI_GA_Test.Classes.Data
     public class RandomMovieList
     {
         private ConfigModel _configs;
-        private Random _randomGenerator = new Random(DateTime.Now.Millisecond);
         public RandomMovieList()
         {
             _configs = Configs.GetInstance().ConfigValues;
-        }
-        private int _RandomNumber(int start, int end)
-        {
-            int randomNumber = _randomGenerator.Next(start, end);
-            return randomNumber;
         }
         public List<MovieItem> GetRandomListOfMovieItems()
         {
@@ -30,7 +25,7 @@ namespace BLI_GA_Test.Classes.Data
 
                 for (int i = 0; i < _configs.IndividualListSize; i++)
                 {
-                    int randomNumber = _RandomNumber(0, MovieListCount);
+                    int randomNumber = RandomUtility.RandomNumber(0, MovieListCount);
                     MovieItem item = dataHolder.Genes[randomNumber];
                     resultData.Add(item);
                 }

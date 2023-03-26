@@ -37,9 +37,9 @@ namespace BLI_GA_Test
                 .Take(topBestIndNumber)
                 .ToList();
 
-            newGeneration.Union(new GeneticOperations(ref population, topBestIndNumber)
-                .Apply()
-                .GetNewGeneration());
+            var geneticOperations = new GeneticOperations(ref population, topBestIndNumber);
+            geneticOperations.Apply();
+            newGeneration = newGeneration.Union(geneticOperations.GetNewGeneration()).ToList();
         }
     }
 }
