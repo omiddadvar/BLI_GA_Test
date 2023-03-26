@@ -92,6 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\ActiveUser.cs" />
+    <Compile Include="Classes\BLI_Algorithm.cs" />
     <Compile Include="Classes\Configs.cs" />
     <Compile Include="Classes\Data\DataHolder.cs" />
     <Compile Include="Classes\Data\InitialData.cs" />

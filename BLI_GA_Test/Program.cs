@@ -16,30 +16,8 @@ namespace BLI_GA_Test
     {
         static void Main(string[] args)
         {
-            var configs = Configs.GetInstance().ConfigValues;
-
-            var dataHolder = DataHolder.GetInstance();
-            dataHolder.Users_With_Similarity = new UserSimilarity().Compute();
-
-            var population = new PopulationGenerator().Generate();
-            foreach (var ind in population)
-            {
-                ind.Fitness =  new IndividualFitness(ind).Compute();
-            }
-            //Sort population according to Semantic-Correlation by "Tag,Genre"
-            population = population
-                .OrderByDescending(ind => ind.Fitness)
-                .ToList();
-
-            int topBestIndNumber = (int)(configs.PopulationSize * 0.10);
-            //Top 10% best individuals according to Semantic-Correlation by "Tag,Genre"
-            var newGeneration = population
-                .Take(topBestIndNumber)
-                .ToList();
-
-            var geneticOperations = new GeneticOperations(ref population, topBestIndNumber);
-            geneticOperations.Apply();
-            newGeneration = newGeneration.Union(geneticOperations.GetNewGeneration()).ToList();
+            var bli = new BLI_Algorithm();
+            bli.Run();
         }
     }
 }
