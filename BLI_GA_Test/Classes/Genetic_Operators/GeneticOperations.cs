@@ -33,7 +33,7 @@ namespace BLI_GA_Test.Classes.Genetic_Operators
         }
         private void _apply_Mutation()
         {
-
+            new Mutation(ref _parents).Apply();
         }
     }
 }
