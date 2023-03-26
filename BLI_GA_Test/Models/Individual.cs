@@ -11,5 +11,6 @@ namespace BLI_GA_Test.Models
         public double SemCorrRating { get; set; }
         public List<MovieItem> MovieList { get; set; }
         public double Fitness { get; set; }
+        public double PredictSatRating { get; set; }
     }
 }

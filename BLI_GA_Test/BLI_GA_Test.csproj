@@ -109,9 +109,9 @@
     <Compile Include="Classes\Genetic_Operators\Fitness\UserSimilarity.cs" />
     <Compile Include="Classes\Genetic_Operators\GeneticOperations.cs" />
     <Compile Include="Classes\Genetic_Operators\Mutation\Mutation.cs" />
+    <Compile Include="Classes\Prediction\predictSatRatng.cs" />
     <Compile Include="Classes\Semantic_Correlation\SemCorrRating.cs" />
     <Compile Include="Classes\Semantic_Correlation\SemSimInd.cs" />
-    <Compile Include="Classes\Similarity\SimilarityUser.cs" />
     <Compile Include="Classes\Utility\RandomUtility.cs" />
     <Compile Include="Interfaces\IAppliable.cs" />
     <Compile Include="Interfaces\IComputable.cs" />
