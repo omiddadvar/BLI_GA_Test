@@ -12,16 +12,16 @@ namespace BLI_GA_Test.Classes.Genetic_Operators.Fitness
     public class PearsonSim : IComputable<double>
     {
         private int _userId;
-        private ActiveUser AU;
-        public PearsonSim(int userId)
+        private ActiveUser _AU;
+        public PearsonSim(ActiveUser AU, int userId)
         {
             _userId = userId;
-            AU = ActiveUser.GetInstance();
+            _AU = AU;
         }
         public double Compute()
         {
             List<Rating> userRating_Raw = _getUserRating();
-            List<Rating> ActiveUserRating_Raw = AU.Ratings;
+            List<Rating> ActiveUserRating_Raw = _AU.Ratings;
             int[] commonMovieIDs = _getCommonMovies(ref userRating_Raw, ref ActiveUserRating_Raw);
 
             double avg_User = userRating_Raw

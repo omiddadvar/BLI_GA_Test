@@ -1,4 +1,5 @@
 ﻿using BLI_GA_Test.Interfaces;
+using BLI_GA_Test.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,17 +11,18 @@ namespace BLI_GA_Test.Classes.Genetic_Operators.Fitness
 {
     public class SatSimU : IComputable<double>
     {
-        private int _userId;
-        public SatSimU(int userId)
+        private User _user;
+        private ActiveUser _AU;
+        public SatSimU(ActiveUser AU, User user)
         {
-            _userId = userId;
+            _user = user;
+            _AU = AU;
         }
         public double Compute()
         {
-            double PearsonMeasureValue = new PearsonSim(_userId).Compute();
-            double JaccardValue = new Jaccard(_userId).Compute();
+            double JaccardValue = new Jaccard(_user.Id).Compute();
 
-            return (double) PearsonMeasureValue *  JaccardValue;
+            return (double) _user.PearsonValue * JaccardValue;
         }
     }
 }

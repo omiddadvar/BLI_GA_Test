@@ -10,6 +10,7 @@ namespace BLI_GA_Test.Models
 	{
         public int Id { get; set; }
         public List<Rating> RatedMovieItems { get; set; }
-        public double similarityWithActiveUser { get; set; } = 0;
+        public double SimilarityWithActiveUser { get; set; } = 0;
+        public double PearsonValue { get; set; } = 0;
 	}
 }

@@ -26,7 +26,6 @@ namespace BLI_GA_Test.Classes
         public void Run()
         {
             _population = new PopulationGenerator().Generate();
-            _dataHolder.Users_With_Similarity = new UserSimilarity().Compute();
 
             for (int i = 0; i < _configs.MaxNumberOfIterations_GA; i++)
             {

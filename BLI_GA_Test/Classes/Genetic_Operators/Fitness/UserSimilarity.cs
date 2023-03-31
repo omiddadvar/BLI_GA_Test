@@ -11,15 +11,15 @@ namespace BLI_GA_Test.Classes.Genetic_Operators.Fitness
 {
     public class UserSimilarity : IComputable<List<User>>
     {
-        private ActiveUser _activeUser;
+        private ActiveUser _AU;
         private List<User> _allUsers;
         private int[] _activeUserMovies;
         private int[] _userIDs_HaveCommonMovies_WithAU;
-        public UserSimilarity()
+        public UserSimilarity(ActiveUser AU)
         {
-            _activeUser = ActiveUser.GetInstance();
-            _activeUserMovies = _activeUser.Ratings.Select(r => r.MovieId).ToArray();
-            _userIDs_HaveCommonMovies_WithAU = _activeUser.Ratings
+            _AU = AU;
+            _activeUserMovies = _AU.Ratings.Select(r => r.MovieId).ToArray();
+            _userIDs_HaveCommonMovies_WithAU = _AU.Ratings
                 .Where(r => _activeUserMovies.Contains(r.MovieId))
                 .Select(r => r.UserId)
                 .Distinct()
@@ -29,14 +29,26 @@ namespace BLI_GA_Test.Classes.Genetic_Operators.Fitness
         } 
         public List<User> Compute()
         {
+            _compute_pearson();
+            _compute_similarity();
+            return _allUsers;
+        }
+        private void _compute_pearson()
+        {
+            foreach (var user in _allUsers)
+            {
+                user.PearsonValue = new PearsonSim(_AU, user.Id).Compute();
+            }
+        }
+        private void _compute_similarity()
+        {
             var users = _allUsers
-                .Where(u => _userIDs_HaveCommonMovies_WithAU.Contains(u.Id))
-                .ToList();
+                        .Where(u => _userIDs_HaveCommonMovies_WithAU.Contains(u.Id))
+                        .ToList();
             foreach (var user in users)
             {
-                user.similarityWithActiveUser = new SatSimU(user.Id).Compute();
+                user.SimilarityWithActiveUser = new SatSimU(_AU, user).Compute();
             }
-            return _allUsers;
         }
     }
 }

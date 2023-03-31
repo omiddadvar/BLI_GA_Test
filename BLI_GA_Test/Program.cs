@@ -19,5 +19,11 @@ namespace BLI_GA_Test
             var bli = new BLI_Algorithm();
             bli.Run();
         }
+        static void OnClick()
+        {
+            var AU = ActiveUser.GetInstance();
+            var dataHolder = DataHolder.GetInstance();
+            dataHolder.Users_With_Similarity = new UserSimilarity(AU).Compute();
+        }
     }
 }

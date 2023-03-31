@@ -28,7 +28,7 @@ namespace BLI_GA_Test.Classes.Genetic_Operators.Fitness
             double satRatingFitnessValue = 0;
             foreach(var user in _ratedUsers)
             {
-                satRatingFitnessValue += user.similarityWithActiveUser;
+                satRatingFitnessValue += user.SimilarityWithActiveUser;
             }
             return satRatingFitnessValue;
         }
