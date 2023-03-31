@@ -1,6 +1,7 @@
 ﻿using BLI_GA_Test.Classes.Data;
 using BLI_GA_Test.Classes.Genetic_Operators;
 using BLI_GA_Test.Classes.Genetic_Operators.Fitness;
+using BLI_GA_Test.Classes.Prediction;
 using BLI_GA_Test.Models;
 using System;
 using System.Collections.Generic;
@@ -17,11 +18,20 @@ namespace BLI_GA_Test.Classes
         private List<Individual>  _newGeneration = new List<Individual>();
         private ConfigModel _configs;
         private DataHolder _dataHolder;
+        private ActiveUser _AU;
         private int _topBestIndNumber;
+
+        private Individual _recommendedIndividual;
+        public Individual RecommendedIndividual => _recommendedIndividual;
         public BLI_Algorithm()
         {
             _configs = Configs.GetInstance().ConfigValues;
             _dataHolder = DataHolder.GetInstance();
+        }
+        public void CalculateUsersSimilarity_WithAU()
+        {
+            _AU = ActiveUser.GetInstance();
+            _dataHolder.Users_With_Similarity = new UserSimilarity(_AU).Compute();
         }
         public void Run()
         {
@@ -40,7 +50,7 @@ namespace BLI_GA_Test.Classes
                 _population = _newGeneration;
             }
             _findBestMem();
-
+            _recommendedIndividual = _predictBestIndividual();
         }
         private void _findBestMem()
         {
@@ -58,6 +68,14 @@ namespace BLI_GA_Test.Classes
             _bestMem = _population
                 .Take(_topBestIndNumber)
                 .ToList();
+        }
+        private Individual _predictBestIndividual()
+        {
+            foreach(var individual in _bestMem)
+            {
+                individual.PredictSatRating = new PredictSatRatng(_AU, individual).Compute();
+            }
+            return _bestMem.OrderByDescending(ind => ind.PredictSatRating).First();
         }
     }
 }

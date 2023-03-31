@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace BLI_GA_Test.Classes.Prediction
 {
-    public class predictSatRatng : IComputable<double>
+    public class PredictSatRatng : IComputable<double>
     {
         private List<User> _allUsers;
         private List<Rating> _allRatings;
         private Individual _individual;
         private int[] _movieIDs;
         private ActiveUser _AU;
-        public predictSatRatng(ActiveUser AU,ref Individual individual)
+        public PredictSatRatng(ActiveUser AU, Individual individual)
         {
             _individual = individual;
             _AU = AU;

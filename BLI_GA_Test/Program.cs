@@ -14,16 +14,25 @@ namespace BLI_GA_Test
 {
     internal class Program
     {
+        private static BLI_Algorithm _bli;
         static void Main(string[] args)
         {
-            var bli = new BLI_Algorithm();
-            bli.Run();
+            _bli = new BLI_Algorithm();
         }
         static void OnClick()
         {
-            var AU = ActiveUser.GetInstance();
-            var dataHolder = DataHolder.GetInstance();
-            dataHolder.Users_With_Similarity = new UserSimilarity(AU).Compute();
+            _bli.CalculateUsersSimilarity_WithAU();
+            _bli.Run();
+            PrintRecommendation(_bli.RecommendedIndividual);
+        }
+        static void PrintRecommendation(Individual individual)
+        {
+            foreach(var movieItem in individual.MovieList)
+            {
+                string output = string.Format("{1} -- {2}",movieItem.MovieId , movieItem.Name);
+                Console.WriteLine(output);
+                Console.WriteLine("--------------------------");
+            }
         }
     }
 }
