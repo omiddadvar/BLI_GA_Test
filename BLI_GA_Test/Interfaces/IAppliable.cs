@@ -8,6 +8,6 @@ namespace BLI_GA_Test.Interfaces
 {
     public interface IAppliable
     {
-        public void Apply();
+        void Apply();
     }
 }

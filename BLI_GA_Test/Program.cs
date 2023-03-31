@@ -18,6 +18,7 @@ namespace BLI_GA_Test
         static void Main(string[] args)
         {
             _bli = new BLI_Algorithm();
+            OnClick();
         }
         static void OnClick()
         {
