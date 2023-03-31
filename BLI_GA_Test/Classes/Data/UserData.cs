@@ -8,28 +8,24 @@ using System.Threading.Tasks;
 
 namespace BLI_GA_Test.Classes.Data
 {
-	public class UserData : IData<User>, IDisposable
+	public class UserData : IData<User>
 	{
-		private UnitOfWork _unitOfWork;
-		public UserData()
-		{
-			_unitOfWork = new UnitOfWork();
-		}
-		public void Dispose()
-		{
-			_unitOfWork.Dispose();
-		}
+		private List<Rating> _ratings;
 
+        public UserData(ref List<Rating> ratings)
+		{
+            _ratings = ratings;
+        }
+		
 		public List<User> FetchData()
 		{
 			try
 			{
 				List<User> Users= new List<User>();
-				var db = _unitOfWork.GetDB();
-				var userIds = db.Ratings.Select(r => r.UserId).Distinct().ToArray();
+				var userIds = _ratings.Select(r => r.UserId).Distinct().ToArray();
 				foreach ( var userid in userIds)
 				{
-					var lRatedMovieItems = db.Ratings.Where(r => r.UserId.Equals(userid)).ToList();
+					var lRatedMovieItems = _ratings.Where(r => r.UserId.Equals(userid)).ToList();
 					Users.Add(new User() { Id = userid, RatedMovieItems = lRatedMovieItems });
 				}
 				return Users;

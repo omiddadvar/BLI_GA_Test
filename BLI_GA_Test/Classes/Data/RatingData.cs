@@ -25,11 +25,23 @@ namespace BLI_GA_Test.Classes.Data
             try
             {
                 var db = _unitOfWork.GetDB();
-                var _ratings = db.Ratings.ToList();
-                return _ratings;
+                var ratings = new List<Rating>();
+                foreach (var rating in db.Ratings.ToList())
+                {
+                    ratings.Add(new Rating
+                    {
+                        RatingId= rating.RatingId,
+                        MovieId= rating.MovieId,
+                        UserId= rating.UserId,
+                        Rate= rating.Rate
+                    });
+                }
+                return ratings;
             }
-            catch
+            catch (Exception ex)
             {
+                Console.WriteLine(ex.ToString());
+                Console.WriteLine(ex.Message);
                 return null;
             }
         }

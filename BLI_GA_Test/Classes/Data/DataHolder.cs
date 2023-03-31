@@ -48,7 +48,7 @@ namespace BLI_GA_Test.Classes.Data
 
 		private void _getUserData()
 		{
-			var dataReader = new UserData();
+			var dataReader = new UserData(ref _ratings);
 			_users = dataReader.FetchData();
 		}
 	}
