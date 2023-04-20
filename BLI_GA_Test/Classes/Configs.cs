@@ -27,7 +27,7 @@ namespace BLI_GA_Test.Classes
             {
                 IndividualListSize = 10,
                 PopulationSize = 100,
-                MaxNumberOfIterations_GA = 300,
+                MaxNumberOfIterations_GA = 1000,
                 ImportanceDegree = new Dictionary<string, int>
                 {
                     { "Importance degree of Tag", 1 },

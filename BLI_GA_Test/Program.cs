@@ -28,13 +28,13 @@ namespace BLI_GA_Test
         }
         static void PrintRecommendation(Individual individual)
         {
-            foreach(var movieItem in individual.MovieList)
+            Console.WriteLine("Remomended Movies:");
+            foreach (var movieItem in individual.MovieList)
             {
-                string output = string.Format("{0} -- {1}",movieItem.MovieId , movieItem.MovieName);
+                string output = string.Format("{0}",movieItem.MovieName);
                 Console.WriteLine(output);
                 Console.WriteLine("--------------------------");
             }
-
 
             Console.ReadKey();
 
