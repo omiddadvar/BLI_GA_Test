@@ -17,13 +17,13 @@ namespace BLI_GA_Test.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Tag()
         {
-            this.Movie_Tag = new HashSet<Movie_Tag>();
+            this.Movie_Tag = new List<Movie_Tag>();
         }
     
         public int TagId { get; set; }
         public string TagName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Movie_Tag> Movie_Tag { get; set; }
+        public virtual List<Movie_Tag> Movie_Tag { get; set; }
     }
 }

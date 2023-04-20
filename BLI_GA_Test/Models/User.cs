@@ -17,7 +17,7 @@ namespace BLI_GA_Test.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
-            this.Ratings = new HashSet<Rating>();
+            this.Ratings = new List<Rating>();
         }
     
         public int UserId { get; set; }
@@ -30,6 +30,6 @@ namespace BLI_GA_Test.Models
 
         public virtual Occupation Occupation { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Rating> Ratings { get; set; }
+        public virtual List<Rating> Ratings { get; set; }
     }
 }

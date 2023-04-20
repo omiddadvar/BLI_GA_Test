@@ -36,15 +36,15 @@ namespace BLI_GA_Test.Classes.Genetic_Operators
         {
             int randomParentNumber = RandomUtility.RandomNumber(0, _parentSize -1);
             Individual parent = _parents[randomParentNumber];
-            int randomItemToMutate = RandomUtility.RandomNumber(0, _configs.IndividualListSize - 1);
+            int randomItemToMutate = RandomUtility.RandomNumber(0, parent.MovieList.Count - 1);
 
-            MovieItem randomGene = _getRandomGene(ref parent);
+            Movie randomGene = _getRandomGene(ref parent);
             parent.MovieList[randomItemToMutate] = randomGene;
         }
-        private MovieItem _getRandomGene(ref Individual individual)
+        private Movie _getRandomGene(ref Individual individual)
         {
             var allGenes = _dataHolder.Genes;
-            MovieItem randomItem;
+            Movie randomItem;
             bool notFound = true;
             do
             {

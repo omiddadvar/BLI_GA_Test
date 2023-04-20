@@ -25,8 +25,8 @@ namespace BLI_GA_Test.Classes
         {
             ConfigValues = new ConfigModel()
             {
-                IndividualListSize = 3,
-                PopulationSize = 300,
+                IndividualListSize = 10,
+                PopulationSize = 100,
                 MaxNumberOfIterations_GA = 300,
                 ImportanceDegree = new Dictionary<string, int>
                 {

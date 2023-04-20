@@ -30,10 +30,14 @@ namespace BLI_GA_Test
         {
             foreach(var movieItem in individual.MovieList)
             {
-                string output = string.Format("{1} -- {2}",movieItem.MovieId , movieItem.Name);
+                string output = string.Format("{0} -- {1}",movieItem.MovieId , movieItem.MovieName);
                 Console.WriteLine(output);
                 Console.WriteLine("--------------------------");
             }
+
+
+            Console.ReadKey();
+
         }
     }
 }

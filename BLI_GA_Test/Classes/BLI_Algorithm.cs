@@ -50,7 +50,7 @@ namespace BLI_GA_Test.Classes
                 _population = _newGeneration;
             }
             _findBestMem();
-            _recommendedIndividual = _predictBestIndividual();
+             _recommendedIndividual = _predictBestIndividual();
         }
         private void _findBestMem()
         {

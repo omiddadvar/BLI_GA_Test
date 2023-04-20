@@ -16,8 +16,8 @@ namespace BLI_GA_Test.Classes.Data
                 _instance = new DataHolder();
             return _instance;
         }
-        private List<MovieItem> _allMovieItems;
-        public List<MovieItem> Genes => _allMovieItems;
+        private List<Movie> _allMovies;
+        public List<Movie> Genes => _allMovies;
 
         private List<Rating> _ratings;
         public List<Rating> Ratings => _ratings;
@@ -38,7 +38,7 @@ namespace BLI_GA_Test.Classes.Data
         private void _getAllMovies()
         {
             var dataReader = new InitialData();
-            _allMovieItems = dataReader.FetchData();
+            _allMovies = dataReader.FetchData();
         }
         private void _getRatingData()
         {
@@ -48,7 +48,7 @@ namespace BLI_GA_Test.Classes.Data
 
 		private void _getUserData()
 		{
-			var dataReader = new UserData(ref _ratings);
+			var dataReader = new UserData();
 			_users = dataReader.FetchData();
 		}
 	}

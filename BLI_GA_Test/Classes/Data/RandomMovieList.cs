@@ -15,18 +15,18 @@ namespace BLI_GA_Test.Classes.Data
         {
             _configs = Configs.GetInstance().ConfigValues;
         }
-        public List<MovieItem> GetRandomListOfMovieItems()
+        public List<Movie> GetRandomListOfMovieItems()
         {
             try
             {
-                var resultData = new List<MovieItem>();
+                var resultData = new List<Movie>();
                 var dataHolder = DataHolder.GetInstance();
                 int MovieListCount = dataHolder.Genes.Count();
 
                 for (int i = 0; i < _configs.IndividualListSize; i++)
                 {
                     int randomNumber = RandomUtility.RandomNumber(0, MovieListCount);
-                    MovieItem item = dataHolder.Genes[randomNumber];
+                    Movie item = dataHolder.Genes[randomNumber];
                     resultData.Add(item);
                 }
                 return resultData;

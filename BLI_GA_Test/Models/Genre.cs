@@ -17,13 +17,13 @@ namespace BLI_GA_Test.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Genre()
         {
-            this.Movie_Genre = new HashSet<Movie_Genre>();
+            this.Movie_Genre = new List<Movie_Genre>();
         }
     
         public int GenreId { get; set; }
         public string Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Movie_Genre> Movie_Genre { get; set; }
+        public virtual List<Movie_Genre> Movie_Genre { get; set; }
     }
 }

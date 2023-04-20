@@ -17,19 +17,20 @@ namespace BLI_GA_Test.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Movie()
         {
-            this.Movie_Genre = new HashSet<Movie_Genre>();
-            this.Movie_Tag = new HashSet<Movie_Tag>();
-            this.Ratings = new HashSet<Rating>();
+            this.Movie_Genre = new List<Movie_Genre>();
+            this.Movie_Tag = new List<Movie_Tag>();
+            this.Ratings = new List<Rating>();
         }
     
         public int MovieId { get; set; }
         public string MovieName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Movie_Genre> Movie_Genre { get; set; }
+        public virtual List<Movie_Genre> Movie_Genre { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Movie_Tag> Movie_Tag { get; set; }
+        public virtual List<Movie_Tag> Movie_Tag { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Rating> Ratings { get; set; }
+        public virtual List<Rating> Ratings { get; set; }
+        public double similarityDegree { get; set; }
     }
 }

@@ -10,11 +10,13 @@ namespace BLI_GA_Test.Classes.Data
 {
 	public class UserData : IData<User>
 	{
-		private List<Rating> _ratings;
+		//private List<Rating> _ratings;
 
-        public UserData(ref List<Rating> ratings)
+        private UnitOfWork _unitOfWork;
+
+        public UserData()
 		{
-            _ratings = ratings;
+            _unitOfWork = new UnitOfWork();
         }
 		
 		public List<User> FetchData()
@@ -22,12 +24,15 @@ namespace BLI_GA_Test.Classes.Data
 			try
 			{
 				List<User> Users= new List<User>();
-				var userIds = _ratings.Select(r => r.UserId).Distinct().ToArray();
-				foreach ( var userid in userIds)
-				{
-					var lRatedMovieItems = _ratings.Where(r => r.UserId.Equals(userid)).ToList();
-					Users.Add(new User() { UserId = userid, Ratings = lRatedMovieItems });
-				}
+                //				var userIds = _ratings.Select(r => r.UserId).Distinct().ToArray();
+                var db = _unitOfWork.GetDB();
+                Users=db.Users.ToList();
+
+    //            foreach ( var userid in userIds)
+				//{
+				//	var lRatedMovieItems = _ratings.Where(r => r.UserId.Equals(userid)).ToList();
+				//	Users.Add(new User() { UserId = userid, Ratings = lRatedMovieItems });
+				//}
 				return Users;
 			}
 			catch

@@ -17,13 +17,13 @@ namespace BLI_GA_Test.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Occupation()
         {
-            this.Users = new HashSet<User>();
+            this.Users = new List<User>();
         }
     
         public int OccupationId { get; set; }
         public string Occupation1 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<User> Users { get; set; }
+        public virtual List<User> Users { get; set; }
     }
 }

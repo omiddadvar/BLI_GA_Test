@@ -22,6 +22,7 @@ namespace BLI_GA_Test.Classes.Prediction
             _AU = AU;
             _allUsers = DataHolder.GetInstance().Users;
             _movieIDs = _individual.MovieList.Select(m => m.MovieId).ToList();
+            _allRatings = DataHolder.GetInstance().Ratings;
         }
         public double Compute()
         {
