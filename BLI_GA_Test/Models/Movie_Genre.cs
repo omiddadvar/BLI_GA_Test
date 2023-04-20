@@ -19,6 +19,6 @@ namespace BLI_GA_Test.Models
         public Nullable<int> GenreId { get; set; }
     
         public virtual Genre Genre { get; set; }
-        public virtual Movie Movy { get; set; }
+        public virtual Movie Movie { get; set; }
     }
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e453ab727cc34b5b9b092c31c25971b9" Name="Diagram1">
+        <EntityTypeShape EntityType="TestModel.Genre" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestModel.Movie_Genre" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestModel.Movie_Tag" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestModel.Movie" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestModel.Rating" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestModel.Tag" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="TestModel.FK_Movie_Genre_GenreId" />
+        <AssociationConnector Association="TestModel.FK_Movie_Genre_MovieId" />
+        <AssociationConnector Association="TestModel.FK_Movie_Tag_MovieId" />
+        <AssociationConnector Association="TestModel.FK_Movie_Tag_TagId" />
+        <AssociationConnector Association="TestModel.FK_Ratings_MovieId" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

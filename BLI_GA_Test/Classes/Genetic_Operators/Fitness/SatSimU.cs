@@ -20,7 +20,7 @@ namespace BLI_GA_Test.Classes.Genetic_Operators.Fitness
         }
         public double Compute()
         {
-            double JaccardValue = new Jaccard(_user.Id).Compute();
+            double JaccardValue = new Jaccard(_user.UserId).Compute();
 
             return (double) _user.PearsonValue * JaccardValue;
         }

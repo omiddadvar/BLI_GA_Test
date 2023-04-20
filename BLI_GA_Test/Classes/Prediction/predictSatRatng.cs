@@ -14,14 +14,14 @@ namespace BLI_GA_Test.Classes.Prediction
         private List<User> _allUsers;
         private List<Rating> _allRatings;
         private Individual _individual;
-        private int[] _movieIDs;
+        private List<int> _movieIDs;
         private ActiveUser _AU;
-        public PredictSatRatng(ActiveUser AU, Individual individual)
+        public PredictSatRatng(ref ActiveUser AU, Individual individual)
         {
             _individual = individual;
             _AU = AU;
             _allUsers = DataHolder.GetInstance().Users;
-            _movieIDs = _individual.MovieList.Select(m => m.MovieId).ToArray();
+            _movieIDs = _individual.MovieList.Select(m => m.MovieId).ToList();
         }
         public double Compute()
         {
@@ -41,8 +41,8 @@ namespace BLI_GA_Test.Classes.Prediction
 
             foreach (var user in userPlus)
             {
-                double userAvgRating = user.RatedMovieItems.Average(r => r.Rate);
-                Rating userItemRate = user.RatedMovieItems
+                double userAvgRating = user.Ratings.Average(r => r.Rate);
+                Rating userItemRate = user.Ratings
                     .Where(r => r.MovieId.Equals(movieId))
                     .FirstOrDefault();
                 if (userItemRate == null)
@@ -66,7 +66,9 @@ namespace BLI_GA_Test.Classes.Prediction
                 .Distinct()
                 .ToArray();
 
-            return _allUsers.Where(u => userIDs.Contains(u.Id)).ToList();
+
+
+            return _allUsers.Where(u => userIDs.Contains(u.UserId)).ToList();
         }
     }
 }

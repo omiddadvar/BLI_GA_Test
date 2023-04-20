@@ -71,9 +71,10 @@ namespace BLI_GA_Test.Classes
         }
         private Individual _predictBestIndividual()
         {
-            foreach(var individual in _bestMem)
+            _AU = ActiveUser.GetInstance();
+            foreach (var individual in _bestMem)
             {
-                individual.PredictSatRating = new PredictSatRatng(_AU, individual).Compute();
+                 individual.PredictSatRating = new PredictSatRatng(ref _AU, individual).Compute();
             }
             return _bestMem.OrderByDescending(ind => ind.PredictSatRating).First();
         }

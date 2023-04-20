@@ -4,18 +4,23 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e453ab727cc34b5b9b092c31c25971b9" Name="Diagram1">
-        <EntityTypeShape EntityType="TestModel.Genre" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TestModel.Movie_Genre" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TestModel.Movie_Tag" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TestModel.Movie" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TestModel.Rating" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TestModel.Tag" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
-        <AssociationConnector Association="TestModel.FK_Movie_Genre_GenreId" />
-        <AssociationConnector Association="TestModel.FK_Movie_Genre_MovieId" />
-        <AssociationConnector Association="TestModel.FK_Movie_Tag_MovieId" />
-        <AssociationConnector Association="TestModel.FK_Movie_Tag_TagId" />
-        <AssociationConnector Association="TestModel.FK_Ratings_MovieId" />
+      <Diagram DiagramId="9682b9ef01794ceca462ea3063b205b9" Name="Diagram1">
+        <EntityTypeShape EntityType="TestModel.Genre" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestModel.Movie_Genre" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestModel.Movie_Tag" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestModel.Movie" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestModel.Occupation" Width="1.5" PointX="1.5" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestModel.Rating" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestModel.sysdiagram" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestModel.Tag" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TestModel.User" Width="1.5" PointX="0.75" PointY="9.875" IsExpanded="true" />
+        <AssociationConnector Association="TestModel.FK_Movie_Genre_GenreId" ManuallyRouted="false" />
+        <AssociationConnector Association="TestModel.FK_Movie_Genre_MovieId" ManuallyRouted="false" />
+        <AssociationConnector Association="TestModel.FK_Movie_Tag_MovieId" ManuallyRouted="false" />
+        <AssociationConnector Association="TestModel.FK_Movie_Tag_TagId" ManuallyRouted="false" />
+        <AssociationConnector Association="TestModel.FK_Ratings_MovieId" ManuallyRouted="false" />
+        <AssociationConnector Association="TestModel.FK_Users_Occupations" ManuallyRouted="false" />
+        <AssociationConnector Association="TestModel.FK_Ratings_Users" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

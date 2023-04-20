@@ -19,6 +19,7 @@ namespace BLI_GA_Test.Models
         public int MovieId { get; set; }
         public double Rate { get; set; }
     
-        public virtual Movie Movy { get; set; }
+        public virtual Movie Movie { get; set; }
+        public virtual User User { get; set; }
     }
 }

@@ -1,0 +1,419 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Genre">
+          <Key>
+            <PropertyRef Name="GenreId" />
+          </Key>
+          <Property Name="GenreId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Movie_Genre">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MovieId" Type="int" />
+          <Property Name="GenreId" Type="int" />
+        </EntityType>
+        <EntityType Name="Movie_Tag">
+          <Key>
+            <PropertyRef Name="MovieTagId" />
+          </Key>
+          <Property Name="MovieTagId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MovieId" Type="int" Nullable="false" />
+          <Property Name="TagId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Movies">
+          <Key>
+            <PropertyRef Name="MovieId" />
+          </Key>
+          <Property Name="MovieId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MovieName" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'Test.dbo.Movies_Raw' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Movies_Raw">
+          <Property Name="MovieId" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="1000" />
+          <Property Name="Genre" Type="varchar" MaxLength="500" />
+        </EntityType>-->
+        <EntityType Name="Ratings">
+          <Key>
+            <PropertyRef Name="RatingId" />
+          </Key>
+          <Property Name="RatingId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="MovieId" Type="int" Nullable="false" />
+          <Property Name="Rate" Type="float" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'Test.dbo.Ratings_Raw' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Ratings_Raw">
+          <Property Name="UserId" Type="int" />
+          <Property Name="MovieId" Type="int" />
+          <Property Name="Rate" Type="float" />
+          <Property Name="Col_4" Type="bigint" />
+        </EntityType>-->
+        <EntityType Name="Tags">
+          <Key>
+            <PropertyRef Name="TagId" />
+          </Key>
+          <Property Name="TagId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TagName" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'Test.dbo.Tags_Raw' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Tags_Raw">
+          <Property Name="TagId" Type="int" />
+          <Property Name="Col_2" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="500" />
+          <Property Name="Col_4" Type="bigint" />
+        </EntityType>-->
+        <Association Name="FK_Movie_Genre_GenreId">
+          <End Role="Genre" Type="Self.Genre" Multiplicity="0..1" />
+          <End Role="Movie_Genre" Type="Self.Movie_Genre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genre">
+              <PropertyRef Name="GenreId" />
+            </Principal>
+            <Dependent Role="Movie_Genre">
+              <PropertyRef Name="GenreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movie_Genre_MovieId">
+          <End Role="Movies" Type="Self.Movies" Multiplicity="0..1" />
+          <End Role="Movie_Genre" Type="Self.Movie_Genre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movies">
+              <PropertyRef Name="MovieId" />
+            </Principal>
+            <Dependent Role="Movie_Genre">
+              <PropertyRef Name="MovieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movie_Tag_MovieId">
+          <End Role="Movies" Type="Self.Movies" Multiplicity="1" />
+          <End Role="Movie_Tag" Type="Self.Movie_Tag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movies">
+              <PropertyRef Name="MovieId" />
+            </Principal>
+            <Dependent Role="Movie_Tag">
+              <PropertyRef Name="MovieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movie_Tag_TagId">
+          <End Role="Tags" Type="Self.Tags" Multiplicity="1" />
+          <End Role="Movie_Tag" Type="Self.Movie_Tag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tags">
+              <PropertyRef Name="TagId" />
+            </Principal>
+            <Dependent Role="Movie_Tag">
+              <PropertyRef Name="TagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ratings_MovieId">
+          <End Role="Movies" Type="Self.Movies" Multiplicity="1" />
+          <End Role="Ratings" Type="Self.Ratings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movies">
+              <PropertyRef Name="MovieId" />
+            </Principal>
+            <Dependent Role="Ratings">
+              <PropertyRef Name="MovieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="Split" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Input" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Character" Type="char" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Item" Type="nvarchar" MaxLength="1000" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <EntityContainer Name="TestModelStoreContainer">
+          <EntitySet Name="Genre" EntityType="Self.Genre" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Movie_Genre" EntityType="Self.Movie_Genre" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Movie_Tag" EntityType="Self.Movie_Tag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Movies" EntityType="Self.Movies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ratings" EntityType="Self.Ratings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tags" EntityType="Self.Tags" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Movie_Genre_GenreId" Association="Self.FK_Movie_Genre_GenreId">
+            <End Role="Genre" EntitySet="Genre" />
+            <End Role="Movie_Genre" EntitySet="Movie_Genre" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movie_Genre_MovieId" Association="Self.FK_Movie_Genre_MovieId">
+            <End Role="Movies" EntitySet="Movies" />
+            <End Role="Movie_Genre" EntitySet="Movie_Genre" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movie_Tag_MovieId" Association="Self.FK_Movie_Tag_MovieId">
+            <End Role="Movies" EntitySet="Movies" />
+            <End Role="Movie_Tag" EntitySet="Movie_Tag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movie_Tag_TagId" Association="Self.FK_Movie_Tag_TagId">
+            <End Role="Tags" EntitySet="Tags" />
+            <End Role="Movie_Tag" EntitySet="Movie_Tag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ratings_MovieId" Association="Self.FK_Ratings_MovieId">
+            <End Role="Movies" EntitySet="Movies" />
+            <End Role="Ratings" EntitySet="Ratings" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <ComplexType Name="Split_Result">
+          <Property Name="Item" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </ComplexType>
+        <EntityType Name="Genre">
+          <Key>
+            <PropertyRef Name="GenreId" />
+          </Key>
+          <Property Name="GenreId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Movie_Genre" Relationship="TestModel.FK_Movie_Genre_GenreId" FromRole="Genre" ToRole="Movie_Genre" />
+        </EntityType>
+        <EntityType Name="Movie_Genre">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MovieId" Type="Int32" />
+          <Property Name="GenreId" Type="Int32" />
+          <NavigationProperty Name="Genre" Relationship="TestModel.FK_Movie_Genre_GenreId" FromRole="Movie_Genre" ToRole="Genre" />
+          <NavigationProperty Name="Movy" Relationship="TestModel.FK_Movie_Genre_MovieId" FromRole="Movie_Genre" ToRole="Movie" />
+        </EntityType>
+        <EntityType Name="Movie_Tag">
+          <Key>
+            <PropertyRef Name="MovieTagId" />
+          </Key>
+          <Property Name="MovieTagId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MovieId" Type="Int32" Nullable="false" />
+          <Property Name="TagId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Movy" Relationship="TestModel.FK_Movie_Tag_MovieId" FromRole="Movie_Tag" ToRole="Movie" />
+          <NavigationProperty Name="Tag" Relationship="TestModel.FK_Movie_Tag_TagId" FromRole="Movie_Tag" ToRole="Tag" />
+        </EntityType>
+        <EntityType Name="Movie">
+          <Key>
+            <PropertyRef Name="MovieId" />
+          </Key>
+          <Property Name="MovieId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MovieName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Movie_Genre" Relationship="TestModel.FK_Movie_Genre_MovieId" FromRole="Movie" ToRole="Movie_Genre" />
+          <NavigationProperty Name="Movie_Tag" Relationship="TestModel.FK_Movie_Tag_MovieId" FromRole="Movie" ToRole="Movie_Tag" />
+          <NavigationProperty Name="Ratings" Relationship="TestModel.FK_Ratings_MovieId" FromRole="Movie" ToRole="Rating" />
+        </EntityType>
+        <EntityType Name="Rating">
+          <Key>
+            <PropertyRef Name="RatingId" />
+          </Key>
+          <Property Name="RatingId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="MovieId" Type="Int32" Nullable="false" />
+          <Property Name="Rate" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Movy" Relationship="TestModel.FK_Ratings_MovieId" FromRole="Rating" ToRole="Movie" />
+        </EntityType>
+        <EntityType Name="Tag">
+          <Key>
+            <PropertyRef Name="TagId" />
+          </Key>
+          <Property Name="TagId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TagName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Movie_Tag" Relationship="TestModel.FK_Movie_Tag_TagId" FromRole="Tag" ToRole="Movie_Tag" />
+        </EntityType>
+        <EntityContainer Name="TestEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Genres" EntityType="Self.Genre" />
+          <EntitySet Name="Movie_Genre" EntityType="Self.Movie_Genre" />
+          <EntitySet Name="Movie_Tag" EntityType="Self.Movie_Tag" />
+          <EntitySet Name="Movies1" EntityType="TestModel.Movie" />
+          <EntitySet Name="Ratings" EntityType="Self.Rating" />
+          <EntitySet Name="Tags" EntityType="Self.Tag" />
+          <FunctionImport Name="Split" IsComposable="true" ReturnType="Collection(TestModel.Split_Result)">
+            <Parameter Name="Input" Mode="In" Type="String" />
+            <Parameter Name="Character" Mode="In" Type="String" />
+          </FunctionImport>
+          <AssociationSet Name="FK_Movie_Genre_GenreId" Association="TestModel.FK_Movie_Genre_GenreId">
+            <End Role="Genre" EntitySet="Genres" />
+            <End Role="Movie_Genre" EntitySet="Movie_Genre" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movie_Genre_MovieId" Association="TestModel.FK_Movie_Genre_MovieId">
+            <End Role="Movie" EntitySet="Movies1" />
+            <End Role="Movie_Genre" EntitySet="Movie_Genre" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movie_Tag_MovieId" Association="TestModel.FK_Movie_Tag_MovieId">
+            <End Role="Movie" EntitySet="Movies1" />
+            <End Role="Movie_Tag" EntitySet="Movie_Tag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movie_Tag_TagId" Association="TestModel.FK_Movie_Tag_TagId">
+            <End Role="Tag" EntitySet="Tags" />
+            <End Role="Movie_Tag" EntitySet="Movie_Tag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ratings_MovieId" Association="TestModel.FK_Ratings_MovieId">
+            <End Role="Movie" EntitySet="Movies1" />
+            <End Role="Rating" EntitySet="Ratings" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_Movie_Genre_GenreId">
+          <End Type="TestModel.Genre" Role="Genre" Multiplicity="0..1" />
+          <End Type="TestModel.Movie_Genre" Role="Movie_Genre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genre">
+              <PropertyRef Name="GenreId" />
+            </Principal>
+            <Dependent Role="Movie_Genre">
+              <PropertyRef Name="GenreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movie_Genre_MovieId">
+          <End Type="TestModel.Movie" Role="Movie" Multiplicity="0..1" />
+          <End Type="TestModel.Movie_Genre" Role="Movie_Genre" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movie">
+              <PropertyRef Name="MovieId" />
+            </Principal>
+            <Dependent Role="Movie_Genre">
+              <PropertyRef Name="MovieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movie_Tag_MovieId">
+          <End Type="TestModel.Movie" Role="Movie" Multiplicity="1" />
+          <End Type="TestModel.Movie_Tag" Role="Movie_Tag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movie">
+              <PropertyRef Name="MovieId" />
+            </Principal>
+            <Dependent Role="Movie_Tag">
+              <PropertyRef Name="MovieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movie_Tag_TagId">
+          <End Type="TestModel.Tag" Role="Tag" Multiplicity="1" />
+          <End Type="TestModel.Movie_Tag" Role="Movie_Tag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tag">
+              <PropertyRef Name="TagId" />
+            </Principal>
+            <Dependent Role="Movie_Tag">
+              <PropertyRef Name="TagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ratings_MovieId">
+          <End Type="TestModel.Movie" Role="Movie" Multiplicity="1" />
+          <End Type="TestModel.Rating" Role="Rating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movie">
+              <PropertyRef Name="MovieId" />
+            </Principal>
+            <Dependent Role="Rating">
+              <PropertyRef Name="MovieId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TestModelStoreContainer" CdmEntityContainer="TestEntities">
+          <EntitySetMapping Name="Genres">
+            <EntityTypeMapping TypeName="TestModel.Genre">
+              <MappingFragment StoreEntitySet="Genre">
+                <ScalarProperty Name="GenreId" ColumnName="GenreId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Movie_Genre">
+            <EntityTypeMapping TypeName="TestModel.Movie_Genre">
+              <MappingFragment StoreEntitySet="Movie_Genre">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MovieId" ColumnName="MovieId" />
+                <ScalarProperty Name="GenreId" ColumnName="GenreId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Movie_Tag">
+            <EntityTypeMapping TypeName="TestModel.Movie_Tag">
+              <MappingFragment StoreEntitySet="Movie_Tag">
+                <ScalarProperty Name="MovieTagId" ColumnName="MovieTagId" />
+                <ScalarProperty Name="MovieId" ColumnName="MovieId" />
+                <ScalarProperty Name="TagId" ColumnName="TagId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Movies1">
+            <EntityTypeMapping TypeName="TestModel.Movie">
+              <MappingFragment StoreEntitySet="Movies">
+                <ScalarProperty Name="MovieId" ColumnName="MovieId" />
+                <ScalarProperty Name="MovieName" ColumnName="MovieName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ratings">
+            <EntityTypeMapping TypeName="TestModel.Rating">
+              <MappingFragment StoreEntitySet="Ratings">
+                <ScalarProperty Name="RatingId" ColumnName="RatingId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="MovieId" ColumnName="MovieId" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tags">
+            <EntityTypeMapping TypeName="TestModel.Tag">
+              <MappingFragment StoreEntitySet="Tags">
+                <ScalarProperty Name="TagId" ColumnName="TagId" />
+                <ScalarProperty Name="TagName" ColumnName="TagName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionName="TestModel.Store.Split" FunctionImportName="Split">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TestModel.Split_Result">
+                <ScalarProperty Name="Item" ColumnName="Item" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

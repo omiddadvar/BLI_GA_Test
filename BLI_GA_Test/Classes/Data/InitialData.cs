@@ -24,7 +24,7 @@ namespace BLI_GA_Test.Classes.Data
             {
                 var movieItems = new List<MovieItem>();
                 var db = _unitOfWork.GetDB();
-                var _movies = db.Movies1
+                var _movies = db.Movies
                     .OrderBy(m => m.MovieId)
                     //.Take(100)
                     .ToList();
@@ -40,11 +40,11 @@ namespace BLI_GA_Test.Classes.Data
                     tempMovieItem.Tags = _movie_tags
                             .Where(mt => mt.MovieId.Equals(movieEntity.MovieId))
                             .Select(t => t.TagId)
-                            .ToArray();
+                            .ToList();
                     tempMovieItem.Genre = _movie_genre
                             .Where(mt => mt.MovieId.Equals(movieEntity.MovieId))
                             .Select(t => (int)t.GenreId)
-                            .ToArray();
+                            .ToList();
 
                     movieItems.Add(tempMovieItem);
                 }

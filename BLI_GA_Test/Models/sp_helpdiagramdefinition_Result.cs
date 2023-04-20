@@ -10,15 +10,10 @@
 namespace BLI_GA_Test.Models
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Movie_Tag
+    public partial class sp_helpdiagramdefinition_Result
     {
-        public int MovieTagId { get; set; }
-        public int MovieId { get; set; }
-        public int TagId { get; set; }
-    
-        public virtual Movie Movie { get; set; }
-        public virtual Tag Tag { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

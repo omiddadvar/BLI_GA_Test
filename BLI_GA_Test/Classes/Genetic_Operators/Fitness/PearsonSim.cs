@@ -22,21 +22,25 @@ namespace BLI_GA_Test.Classes.Genetic_Operators.Fitness
         {
             List<Rating> userRating_Raw = _getUserRating();
             List<Rating> ActiveUserRating_Raw = _AU.Ratings;
-            int[] commonMovieIDs = _getCommonMovies(ref userRating_Raw, ref ActiveUserRating_Raw);
-
-            double avg_User = userRating_Raw
-                .Where(r => commonMovieIDs.Contains(r.MovieId))
-                .Average(r => r.Rate);
-            double avg_ActiveUser = ActiveUserRating_Raw
-               .Where(r => commonMovieIDs.Contains(r.MovieId))
-               .Average(r => r.Rate);
+            List<int> commonMovieIDs = _getCommonMovies(ref userRating_Raw, ref ActiveUserRating_Raw).ToList();
+            double avg_User = 0;
+            double avg_ActiveUser = 0;
+            if (commonMovieIDs.Count() > 0)
+            {
+                avg_User = userRating_Raw
+                    .Where(r => commonMovieIDs.Contains(r.MovieId))
+                    .Average(r => r.Rate);
+                avg_ActiveUser = ActiveUserRating_Raw
+                   .Where(r => commonMovieIDs.Contains(r.MovieId))
+                   .Average(r => r.Rate);
+            }
 
             List<Rating> userRating = userRating_Raw
                 .Where(r => commonMovieIDs.Contains(r.MovieId)).ToList();
-            userRating_Raw.Clear(); // Free-up memory
+//            userRating_Raw.Clear(); // Free-up memory
             List<Rating> ActiveUserRatings = ActiveUserRating_Raw
                 .Where(r => commonMovieIDs.Contains(r.MovieId)).ToList();
-            ActiveUserRating_Raw.Clear(); // Free-up memory
+//            ActiveUserRating_Raw.Clear(); // Free-up memory
 
             double numerator = 0 , denominator1 = 0 , denominator2 = 0;
             foreach(var item in userRating)
@@ -64,11 +68,11 @@ namespace BLI_GA_Test.Classes.Genetic_Operators.Fitness
                 .Where(r => r.UserId.Equals(_userId))
                 .ToList();
         }
-        private int[] _getCommonMovies(ref List<Rating> userRating ,ref List<Rating> AURating)
+        private List<int> _getCommonMovies(ref List<Rating> userRating ,ref List<Rating> AURating)
         {
-            int[] movieIds_user = userRating.Select(r => r.MovieId).ToArray();
-            int[] movieIds_AU = AURating.Select(r => r.MovieId).ToArray();
-            return movieIds_user.Intersect(movieIds_AU).ToArray();
+            List<int> movieIds_user = userRating.Select(r => r.MovieId).ToList();
+            List<int> movieIds_AU = AURating.Select(r => r.MovieId).ToList();
+            return movieIds_user.Intersect(movieIds_AU).ToList();
         }
     }
 }

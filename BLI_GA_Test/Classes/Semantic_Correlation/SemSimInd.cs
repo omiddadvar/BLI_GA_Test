@@ -26,10 +26,11 @@ namespace BLI_GA_Test.Classes.Semantic_Correlation
         public double Calculate_Similarity()
         {
             //---sorting-----
-            Array.Sort(_movieA.Tags);
-            Array.Sort(_movieA.Genre);
-            Array.Sort(_movieB.Tags);
-            Array.Sort(_movieB.Genre);
+            
+            _movieA.Tags.Sort();
+            _movieA.Genre.Sort();
+            _movieB.Tags.Sort();
+            _movieB.Genre.Sort();
 
             //---Calculation-----
             F11 = _calculate_Incommons();

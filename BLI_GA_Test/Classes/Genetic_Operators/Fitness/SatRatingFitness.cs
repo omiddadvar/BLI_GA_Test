@@ -34,11 +34,11 @@ namespace BLI_GA_Test.Classes.Genetic_Operators.Fitness
         }
         private void _findRatedUsers()
         {
-            int[] movieIDs = _individual.MovieList.Select(m => m.MovieId).ToArray();
+            List<int> movieIDs = _individual.MovieList.Select(m => m.MovieId).ToList();
             foreach (User user in _allUsers)
             {
                 var ratings = (from movie in movieIDs
-                               join rating in user.RatedMovieItems on movie equals rating.MovieId
+                               join rating in user.Ratings on movie equals rating.MovieId
                                select rating)
                      .ToList();
                 if (ratings.Count() > 0)

@@ -26,7 +26,7 @@ namespace BLI_GA_Test.Classes.Data
 				foreach ( var userid in userIds)
 				{
 					var lRatedMovieItems = _ratings.Where(r => r.UserId.Equals(userid)).ToList();
-					Users.Add(new User() { Id = userid, RatedMovieItems = lRatedMovieItems });
+					Users.Add(new User() { UserId = userid, Ratings = lRatedMovieItems });
 				}
 				return Users;
 			}

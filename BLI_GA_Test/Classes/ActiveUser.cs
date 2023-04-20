@@ -17,7 +17,9 @@ namespace BLI_GA_Test.Classes
                 instance = new ActiveUser();
             return instance;
         }
-        public List<Rating> Ratings { get; set; }
+        public List<Rating> Ratings { get;
+            set;
+        }
         private ActiveUser() 
         {
             long maxRatingId = DataHolder.GetInstance().MaxRatingID;
@@ -25,53 +27,25 @@ namespace BLI_GA_Test.Classes
             {
                 new Rating()
                 {
-                    MovieId = 1005,
+                    MovieId = 1814,
                     RatingId = ++maxRatingId,
                     UserId = -1,
                     Rate = 3.5
                 },
                 new Rating()
                 {
-                    MovieId = 1006,
+                    MovieId = 1754,
                     RatingId = ++maxRatingId,
                     UserId = -1,
                     Rate = 5
                 },
                 new Rating()
                 {
-                    MovieId = 1009,
+                    MovieId = 1676,
                     RatingId = ++maxRatingId,
                     UserId = -1,
                     Rate = 4
-                },
-                new Rating()
-                {
-                    MovieId = 2006,
-                    RatingId = ++maxRatingId,
-                    UserId = -1,
-                    Rate = 4.5
-                },
-                new Rating()
-                {
-                    MovieId = 600,
-                    RatingId = ++maxRatingId,
-                    UserId = -1,
-                    Rate = 1.5
-                },
-                new Rating()
-                {
-                    MovieId = 4000,
-                    RatingId = ++maxRatingId,
-                    UserId = -1,
-                    Rate = 2.5
-                },
-                new Rating()
-                {
-                    MovieId = 1241,
-                    RatingId = ++maxRatingId,
-                    UserId = -1,
-                    Rate = 3
-                },
+                }
             };
         }
     }

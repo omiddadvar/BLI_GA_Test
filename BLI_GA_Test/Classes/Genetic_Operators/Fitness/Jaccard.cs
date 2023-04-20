@@ -36,18 +36,18 @@ namespace BLI_GA_Test.Classes.Genetic_Operators.Fitness
                 .ToList();
         }
 
-        private int[] _getCommonMovies(ref List<Rating> userRating, ref List<Rating> AURating)
+        private List<int> _getCommonMovies(ref List<Rating> userRating, ref List<Rating> AURating)
         {
-            int[] movieIds_user = userRating.Select(r => r.MovieId).ToArray();
-            int[] movieIds_AU = AURating.Select(r => r.MovieId).ToArray();
-            return movieIds_user.Intersect(movieIds_AU).ToArray();
+            List<int> movieIds_user = userRating.Select(r => r.MovieId).ToList();
+            List<int> movieIds_AU = AURating.Select(r => r.MovieId).ToList();
+            return movieIds_user.Intersect(movieIds_AU).ToList();
         }
 
-        private int[] _getAllMovies(ref List<Rating> userRating, ref List<Rating> AURating)
+        private List<int> _getAllMovies(ref List<Rating> userRating, ref List<Rating> AURating)
         {
-            int[] movieIds_user = userRating.Select(r => r.MovieId).ToArray();
-            int[] movieIds_AU = AURating.Select(r => r.MovieId).ToArray();
-            return movieIds_user.Union(movieIds_AU).ToArray();
+            List<int> movieIds_user = userRating.Select(r => r.MovieId).ToList();
+            List<int> movieIds_AU = AURating.Select(r => r.MovieId).ToList();
+            return movieIds_user.Union(movieIds_AU).ToList();
         }
 
     }
