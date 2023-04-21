@@ -27,21 +27,21 @@ namespace BLI_GA_Test.Classes
             {
                 new Rating()
                 {
-                    MovieId = 1814,
+                    MovieId = 802, //------
                     RatingId = ++maxRatingId,
                     UserId = -1,
                     Rate = 5
                 },
                 new Rating()
                 {
-                    MovieId = 1754,
+                    MovieId = 209,//------
                     RatingId = ++maxRatingId,
                     UserId = -1,
                     Rate = 4
                 },
                 new Rating()
                 {
-                    MovieId = 1676,
+                    MovieId = 1197,//------
                     RatingId = ++maxRatingId,
                     UserId = -1,
                     Rate = 2

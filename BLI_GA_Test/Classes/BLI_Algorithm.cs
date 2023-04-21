@@ -46,7 +46,10 @@ namespace BLI_GA_Test.Classes
                 var geneticOperations = new GeneticOperations(ref _population, _topBestIndNumber);
                 geneticOperations.Apply();
                 _newGeneration = _newGeneration.Union(geneticOperations.GetNewGeneration()).ToList();
-
+                if (i % 50 == 0)
+                {
+                    _population = _newGeneration;
+                }
                 _population = _newGeneration;
             }
             _findBestMem();

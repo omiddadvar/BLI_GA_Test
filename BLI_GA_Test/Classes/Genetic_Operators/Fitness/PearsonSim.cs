@@ -60,7 +60,11 @@ namespace BLI_GA_Test.Classes.Genetic_Operators.Fitness
             }
             denominator2 = Math.Sqrt(denominator2);
 
-            return numerator / (denominator1 * denominator2);
+            double result = 0;
+            if (denominator1 * denominator2 != 0)
+                result = numerator / (denominator1 * denominator2);
+
+            return result;
         }
         private List<Rating> _getUserRating()
         {

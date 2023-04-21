@@ -56,8 +56,12 @@ namespace BLI_GA_Test.Classes.Prediction
                 denominator += user.PearsonValue;
                 nominator += user.PearsonValue * userRateingDiffAvg;
             }
-
-            return nominator / denominator;
+            double result = 0;
+            if (!denominator.Equals(0))
+            {
+                result = nominator / denominator;
+            }
+            return result;
         }
         private List<User> _getUserPlus()
         {

@@ -31,6 +31,5 @@ namespace BLI_GA_Test.Models
         public virtual List<Movie_Tag> Movie_Tag { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual List<Rating> Ratings { get; set; }
-        public double similarityDegree { get; set; }
     }
 }

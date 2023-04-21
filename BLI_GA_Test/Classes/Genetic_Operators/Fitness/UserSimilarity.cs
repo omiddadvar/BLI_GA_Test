@@ -15,11 +15,13 @@ namespace BLI_GA_Test.Classes.Genetic_Operators.Fitness
         private List<User> _allUsers;
         private List<int> _activeUserMovies;
         private List<int> _userIDs_HaveCommonMovies_WithAU;
+        private List<Rating> _allRatings;
         public UserSimilarity(ActiveUser AU)
         {
             _AU = AU;
             _activeUserMovies = _AU.Ratings.Select(r => r.MovieId).ToList();
-            _userIDs_HaveCommonMovies_WithAU = _AU.Ratings
+            _allRatings = DataHolder.GetInstance().Ratings;
+            _userIDs_HaveCommonMovies_WithAU = _allRatings
                 .Where(r => _activeUserMovies.Contains(r.MovieId))
                 .Select(r => r.UserId)
                 .Distinct()
