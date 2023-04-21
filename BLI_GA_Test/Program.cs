@@ -28,7 +28,7 @@ namespace BLI_GA_Test
         }
         static void PrintRecommendation(Individual individual)
         {
-            Console.WriteLine("Remomended Movies:");
+            Console.WriteLine("Recomended Movies:");
             foreach (var movieItem in individual.MovieList)
             {
                 string output = string.Format("{0}",movieItem.MovieName);
