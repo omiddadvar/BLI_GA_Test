@@ -156,7 +156,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\MovieItem.cs" />
     <Compile Include="Models\Movie_Genre.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
