@@ -129,7 +129,7 @@
     <Compile Include="Classes\Genetic_Operators\Fitness\UserSimilarity.cs" />
     <Compile Include="Classes\Genetic_Operators\GeneticOperations.cs" />
     <Compile Include="Classes\Genetic_Operators\Mutation\Mutation.cs" />
-    <Compile Include="Classes\Log\TextLog.cs" />
+    <Compile Include="Classes\Loggger\TextLog.cs" />
     <Compile Include="Classes\Prediction\PredictSatRatng.cs" />
     <Compile Include="Classes\Semantic_Correlation\SemCorrRating.cs" />
     <Compile Include="Classes\Semantic_Correlation\SemSimInd.cs" />
