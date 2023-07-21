@@ -5,6 +5,8 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLI_GA_Test", "BLI_GA_Test\BLI_GA_Test.csproj", "{04F0149C-1A47-49C9-9288-8A712D132E4E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MachineLearning", "MachineLearning\MachineLearning.csproj", "{A1BBB3FD-E3C9-4A52-8824-D13417B6D765}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,14 @@ Global
 		{04F0149C-1A47-49C9-9288-8A712D132E4E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{04F0149C-1A47-49C9-9288-8A712D132E4E}.Release|x64.ActiveCfg = Release|x64
 		{04F0149C-1A47-49C9-9288-8A712D132E4E}.Release|x64.Build.0 = Release|x64
+		{A1BBB3FD-E3C9-4A52-8824-D13417B6D765}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1BBB3FD-E3C9-4A52-8824-D13417B6D765}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1BBB3FD-E3C9-4A52-8824-D13417B6D765}.Debug|x64.ActiveCfg = Debug|x64
+		{A1BBB3FD-E3C9-4A52-8824-D13417B6D765}.Debug|x64.Build.0 = Debug|x64
+		{A1BBB3FD-E3C9-4A52-8824-D13417B6D765}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1BBB3FD-E3C9-4A52-8824-D13417B6D765}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1BBB3FD-E3C9-4A52-8824-D13417B6D765}.Release|x64.ActiveCfg = Release|Any CPU
+		{A1BBB3FD-E3C9-4A52-8824-D13417B6D765}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
