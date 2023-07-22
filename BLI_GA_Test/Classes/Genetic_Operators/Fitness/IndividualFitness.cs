@@ -11,7 +11,7 @@ namespace BLI_GA_Test.Classes.Genetic_Operators.Fitness
     public class IndividualFitness : IComputable<double>
     {
         private Individual _individual;
-        int _ImportanceDegree_Semantic,
+        double _ImportanceDegree_Semantic,
             _ImportanceDegree_UsersSimilarity;
         public IndividualFitness(Individual individual) 
         {

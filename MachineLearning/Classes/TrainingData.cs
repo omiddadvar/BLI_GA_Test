@@ -12,8 +12,8 @@ namespace MachineLearning.Classes
 {
     public  class TrainingData
     {
-        private TrainingData _instance;
-        public TrainingData GetInstance()
+        private static TrainingData _instance;
+        public static TrainingData GetInstance()
         {
             if(_instance == null)
                 _instance = new TrainingData();

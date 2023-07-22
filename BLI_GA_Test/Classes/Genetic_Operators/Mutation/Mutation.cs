@@ -38,13 +38,13 @@ namespace BLI_GA_Test.Classes.Genetic_Operators
             Individual parent = _parents[randomParentNumber];
             int randomItemToMutate = RandomUtility.RandomNumber(0, parent.MovieList.Count - 1);
 
-            Movie randomGene = _getRandomGene(ref parent);
+            ExtendedMovie randomGene = _getRandomGene(ref parent);
             parent.MovieList[randomItemToMutate] = randomGene;
         }
-        private Movie _getRandomGene(ref Individual individual)
+        private ExtendedMovie _getRandomGene(ref Individual individual)
         {
             var allGenes = _dataHolder.Genes;
-            Movie randomItem;
+            ExtendedMovie randomItem;
             bool notFound = true;
             do
             {

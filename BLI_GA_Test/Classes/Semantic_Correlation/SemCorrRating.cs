@@ -12,8 +12,8 @@ namespace BLI_GA_Test.Classes.Semantic_Correlation
 {
     public class SemCorrRating
     {
-        private List<Movie> _individual_MovieList;
-        public SemCorrRating(List<Movie> individual_MovieList) 
+        private List<ExtendedMovie> _individual_MovieList;
+        public SemCorrRating(List<ExtendedMovie> individual_MovieList) 
         {
             this._individual_MovieList = individual_MovieList;
         }

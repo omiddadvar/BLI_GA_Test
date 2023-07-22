@@ -28,15 +28,15 @@ namespace BLI_GA_Test.Classes
                 IndividualListSize = 10,
                 PopulationSize = 100,
                 MaxNumberOfIterations_GA = 300,
-                ImportanceDegree = new Dictionary<string, int>
+                ImportanceDegree = new Dictionary<string, double>
                 {
-                    { "Importance degree of Tag", 1 },
-                    { "Importance degree of Genre", 1 }
+                    { "Importance degree of Tag", 0.5 },
+                    { "Importance degree of Genre", 0.5 }
                 },
-                ImportanceDegree_Fitness = new Dictionary<string, int>
+                ImportanceDegree_Fitness = new Dictionary<string, double>
                 {
-                    {"Importance degree of Semantic Correlation" , 1},
-                    {"Importance degree of Users Similarity", 1 }
+                    {"Importance degree of Semantic Correlation" , 0.5},
+                    {"Importance degree of Users Similarity", 0.5}
                 }
             };
         }

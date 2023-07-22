@@ -16,14 +16,16 @@ namespace BLI_GA_Test.Classes.Data
                 _instance = new DataHolder();
             return _instance;
         }
-        private List<Movie> _allMovies;
-        public List<Movie> Genes => _allMovies;
+        private List<ExtendedMovie> _allMovies;
+        public List<ExtendedMovie> Genes => _allMovies;
 
         private List<Rating> _ratings;
         public List<Rating> Ratings => _ratings;
 
 		private List<User> _users;
 		public List<User> Users => _users;
+		public List<User> TrainingUsers { get; set; }
+        public List<User> TestUsers { get; set; }
 		public List<User> Users_With_Similarity { get; set; }
 
 		private long _maxRatingID = -1;

@@ -12,7 +12,7 @@ namespace BLI_GA_Test.Classes.Semantic_Correlation
     {
         Movie _movieA, _movieB;
         int F11, F10, F01;
-        int importance_degree_tag = 1,
+        double importance_degree_tag = 1,
             importance_degree_genre = 1;
         public SemSimInd(Movie MovieA , Movie MovieB)
         {
@@ -43,19 +43,19 @@ namespace BLI_GA_Test.Classes.Semantic_Correlation
         {
             int inCommon_Tags = _movieA.Movie_Tag.Count() - _movieA.Movie_Tag.Except(_movieB.Movie_Tag).Count();
             int inCommon_Genre = _movieA.Movie_Genre.Count() - _movieA.Movie_Genre.Except(_movieB.Movie_Genre).Count();
-            return inCommon_Tags * importance_degree_tag + inCommon_Genre * importance_degree_genre;
+            return (int)(inCommon_Tags * importance_degree_tag + inCommon_Genre * importance_degree_genre);
         }
         private int _calculate_A_Not_B()
         {
             int tags_In_A_Not_B = _movieA.Movie_Tag.Except(_movieB.Movie_Tag).Count();
             int genre_In_A_Not_B = _movieA.Movie_Genre.Except(_movieB.Movie_Genre).Count();
-            return tags_In_A_Not_B * importance_degree_tag + genre_In_A_Not_B * importance_degree_genre;
+            return (int)(tags_In_A_Not_B * importance_degree_tag + genre_In_A_Not_B * importance_degree_genre);
         }
         private int _calculate_B_Not_A()
         {
             int tags_In_B_Not_A = _movieB.Movie_Tag.Except(_movieA.Movie_Tag).Count();
             int genre_In_B_Not_A = _movieB.Movie_Genre.Except(_movieA.Movie_Genre).Count();
-            return tags_In_B_Not_A * importance_degree_tag + genre_In_B_Not_A * importance_degree_genre;
+            return (int)(tags_In_B_Not_A * importance_degree_tag + genre_In_B_Not_A * importance_degree_genre);
         }
 
     }

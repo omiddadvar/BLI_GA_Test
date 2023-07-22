@@ -23,7 +23,7 @@ namespace BLI_GA_Test.Classes.Genetic_Operators.Fitness
         public double Compute()
         {
             List<Rating> userRating_Raw = _getUserRating();
-            List<Rating> ActiveUserRating_Raw = AU.Ratings;
+            List<Rating> ActiveUserRating_Raw = AU.TrainingRatings;
             int CommonMoviesCount = _getCommonMovies(ref userRating_Raw, ref ActiveUserRating_Raw).Count();
             int AllMoviesCount = _getAllMovies(ref userRating_Raw, ref ActiveUserRating_Raw).Count();
             return ((double)CommonMoviesCount) / AllMoviesCount;

@@ -21,7 +21,7 @@ namespace BLI_GA_Test.Classes.Genetic_Operators.Fitness
         public double Compute()
         {
             List<Rating> userRating_Raw = _getUserRating();
-            List<Rating> ActiveUserRating_Raw = _AU.Ratings;
+            List<Rating> ActiveUserRating_Raw = _AU.TrainingRatings;
             List<int> commonMovieIDs = _getCommonMovies(ref userRating_Raw, ref ActiveUserRating_Raw).ToList();
             double avg_User = 0;
             double avg_ActiveUser = 0;

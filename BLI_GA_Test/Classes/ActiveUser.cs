@@ -17,86 +17,11 @@ namespace BLI_GA_Test.Classes
                 instance = new ActiveUser();
             return instance;
         }
-        public List<Rating> Ratings { get;
-            set;
-        }
+        public List<Rating> TrainingRatings { get; set; }
+        public List<Rating> TestRatings { get; set; }
         private ActiveUser() 
         {
-            long maxRatingId = DataHolder.GetInstance().MaxRatingID;
-            Ratings = new List<Rating>()
-            {
-                new Rating()
-                {
-                    MovieId = 802, //------
-                    RatingId = ++maxRatingId,
-                    UserId = -1,
-                    Rate = 5
-                },
-                new Rating()
-                {
-                    MovieId = 209,//------
-                    RatingId = ++maxRatingId,
-                    UserId = -1,
-                    Rate = 4
-                },
-                new Rating()
-                {
-                    MovieId = 1197,//------
-                    RatingId = ++maxRatingId,
-                    UserId = -1,
-                    Rate = 2
-                },
 
-                new Rating()
-                {
-                    MovieId = 1444,
-                    RatingId = ++maxRatingId,
-                    UserId = -1,
-                    Rate = 5
-                },
-                new Rating()
-                {
-                    MovieId = 518,
-                    RatingId = ++maxRatingId,
-                    UserId = -1,
-                    Rate = 3
-                },
-                new Rating()
-                {
-                    MovieId = 294,
-                    RatingId = ++maxRatingId,
-                    UserId = -1,
-                    Rate = 3
-                },
-                new Rating()
-                {
-                    MovieId = 21,
-                    RatingId = ++maxRatingId,
-                    UserId = -1,
-                    Rate = 5
-                },
-                new Rating()
-                {
-                    MovieId = 328,
-                    RatingId = ++maxRatingId,
-                    UserId = -1,
-                    Rate = 5
-                },
-                new Rating()
-                {
-                    MovieId = 96,
-                    RatingId = ++maxRatingId,
-                    UserId = -1,
-                    Rate = 4
-                },
-                new Rating()
-                {
-                    MovieId = 796,
-                    RatingId = ++maxRatingId,
-                    UserId = -1,
-                    Rate = 4
-                }
-            };
         }
     }
 }

@@ -122,8 +122,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\MAE\MAECalculator.cs" />
+    <Compile Include="Classes\Precision\PrecisionCalculator.cs" />
+    <Compile Include="Classes\Recall\RecallCalculator.cs" />
     <Compile Include="Classes\TrainingData.cs" />
     <Compile Include="Classes\TrainingProcess.cs" />
+    <Compile Include="Interfaces\IRunnable.cs" />
+    <Compile Include="Models\PrecisionCriterionParameters.cs" />
     <Compile Include="Models\TrainingTestDataModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

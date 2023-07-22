@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BLI_GA_Test.Models
 {
-    internal class ExtendedMovie : Movie
+    public class ExtendedMovie : Movie
     {
         public ExtendedMovie() : base()
         {

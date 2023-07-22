@@ -27,7 +27,7 @@ namespace BLI_GA_Test.Classes.Prediction
         public double Compute()
         {
             double predict_AU_ind = 0;
-            double avg_rating_AU = _AU.Ratings.Average(r => r.Rate);
+            double avg_rating_AU = _AU.TrainingRatings.Average(r => r.Rate);
             foreach (var movieItem in _individual.MovieList)
             {
                 double fraction = _compute_fraction(movieItem.MovieId);

@@ -37,8 +37,8 @@ namespace BLI_GA_Test.Classes.Genetic_Operators
             int crossOverPosition = RandomUtility.RandomNumber(1, _configs.IndividualListSize);
 
             // Clone List
-            var tmp_Movies_A = new List<Movie>(parent_A.MovieList); 
-            var tmp_Movies_B = new List<Movie>(parent_B.MovieList);
+            var tmp_Movies_A = new List<ExtendedMovie>(parent_A.MovieList); 
+            var tmp_Movies_B = new List<ExtendedMovie>(parent_B.MovieList);
             parent_A.MovieList.Clear();
             parent_B.MovieList.Clear();
 
