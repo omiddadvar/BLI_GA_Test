@@ -49,7 +49,8 @@ namespace BLI_GA_Test.Classes
                 _population = _newGeneration;
             }
             _findBestMem();
-             _recommendedIndividual = _predictBestIndividual();
+            _predictBestIndividual();
+            _SetRatingsValue_ForRecommended();
         }
         private void _findBestMem()
         {
@@ -68,14 +69,43 @@ namespace BLI_GA_Test.Classes
                 .Take(_topBestIndNumber)
                 .ToList();
         }
-        private Individual _predictBestIndividual()
+        private void _predictBestIndividual()
         {
             _AU = ActiveUser.GetInstance();
             foreach (var individual in _bestMem)
             {
                  individual.PredictSatRating = new PredictSatRatng(ref _AU, individual).Compute();
             }
-            return _bestMem.OrderByDescending(ind => ind.PredictSatRating).First();
+            _recommendedIndividual = _bestMem.OrderByDescending(ind => ind.PredictSatRating).First();
+        }
+        private void _SetRatingsValue_ForRecommended()
+        {
+            foreach(var movie in _recommendedIndividual.MovieList)
+            {
+                movie.PredictedRating = _RateRound(
+                        _dataHolder.TrainingRatings
+                        .Where(r => r.MovieId == movie.MovieId)
+                        .Average(r => r.Rate)
+                    );
+            }
+        }
+        private double _RateRound(double input)
+        {
+            double whole = Math.Truncate(input);
+            double remainder = input - whole;
+            if (remainder < 0.3)
+            {
+                remainder = 0;
+            }
+            else if (remainder < 0.8)
+            {
+                remainder = 0.5;
+            }
+            else
+            {
+                remainder = 1;
+            }
+            return whole + remainder;
         }
     }
 }

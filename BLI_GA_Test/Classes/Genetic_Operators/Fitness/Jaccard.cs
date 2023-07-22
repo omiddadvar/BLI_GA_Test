@@ -31,7 +31,7 @@ namespace BLI_GA_Test.Classes.Genetic_Operators.Fitness
 
         private List<Rating> _getUserRating()
         {
-            return DataHolder.GetInstance().Ratings
+            return DataHolder.GetInstance().TrainingRatings
                 .Where(r => r.UserId.Equals(_userId))
                 .ToList();
         }

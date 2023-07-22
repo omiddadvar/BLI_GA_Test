@@ -16,6 +16,8 @@ namespace MachineLearning
         static void Main(string[] args)
         {
 
+            var trainingProcess = new TrainingProcess();
+            trainingProcess.Run();
 
             Console.ReadKey();
         }

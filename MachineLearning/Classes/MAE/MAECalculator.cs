@@ -32,7 +32,7 @@ namespace MachineLearning.Classes.MAE
                 }
                 else
                 {
-                    mae += Math.Abs(incommonMovie.Rating - ratingItem.Rate);
+                    mae += Math.Abs(incommonMovie.PredictedRating - ratingItem.Rate);
                 }
             }
             mae /= _AU.TestRatings.Count();

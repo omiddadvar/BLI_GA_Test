@@ -20,7 +20,13 @@ namespace BLI_GA_Test.Classes.Data
         public List<ExtendedMovie> Genes => _allMovies;
 
         private List<Rating> _ratings;
-        public List<Rating> Ratings => _ratings;
+        public List<Rating> TrainingRatings { 
+            get {
+                int[] trainingUserIDs = TrainingUsers.Select(t => t.UserId).ToArray();
+                return _ratings.Where(r => trainingUserIDs.Contains(r.UserId)).ToList();
+            } 
+        }
+        public List<Rating> AllRatings => _ratings;
 
 		private List<User> _users;
 		public List<User> Users => _users;

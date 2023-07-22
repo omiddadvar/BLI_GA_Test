@@ -20,7 +20,7 @@ namespace BLI_GA_Test.Classes.Genetic_Operators.Fitness
         {
             _AU = AU;
             _activeUserMovies = _AU.TrainingRatings.Select(r => r.MovieId).ToList();
-            _allRatings = DataHolder.GetInstance().Ratings;
+            _allRatings = DataHolder.GetInstance().TrainingRatings;
             _userIDs_HaveCommonMovies_WithAU = _allRatings
                 .Where(r => _activeUserMovies.Contains(r.MovieId))
                 .Select(r => r.UserId)

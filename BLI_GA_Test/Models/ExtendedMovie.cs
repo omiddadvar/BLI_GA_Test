@@ -10,8 +10,8 @@ namespace BLI_GA_Test.Models
     {
         public ExtendedMovie() : base()
         {
-            Rating = -1;
+            PredictedRating = -1;
         }
-        public double Rating { get; set; }
+        public double PredictedRating { get; set; }
     }
 }
