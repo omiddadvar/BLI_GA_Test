@@ -10,6 +10,8 @@ namespace BLI_GA_Test.Classes.Data
     public class DataHolder
     {
         private static DataHolder _instance;
+
+        private ActiveUser _AU;
         public static DataHolder GetInstance()
         {
             if(_instance == null)
@@ -30,7 +32,11 @@ namespace BLI_GA_Test.Classes.Data
 
 		private List<User> _users;
 		public List<User> Users => _users;
-		public List<User> TrainingUsers { get; set; }
+        private List<User> _trainingUsers;
+		public List<User> TrainingUsers { 
+            get => _trainingUsers.Where(u => u.UserId != _AU.UserId).ToList();
+            set => _trainingUsers = value; 
+        }
         public List<User> TestUsers { get; set; }
 		public List<User> Users_With_Similarity { get; set; }
 
@@ -42,6 +48,7 @@ namespace BLI_GA_Test.Classes.Data
             _getRatingData();
             _getUserData();
             _maxRatingID = _ratings.OrderByDescending(r => r.RatingId).First().RatingId;
+            _AU = ActiveUser.GetInstance();
         }
         private void _getAllMovies()
         {

@@ -17,6 +17,7 @@ namespace BLI_GA_Test.Classes
                 instance = new ActiveUser();
             return instance;
         }
+        public int UserId { get; set; }
         public List<Rating> TrainingRatings { get; set; }
         public List<Rating> TestRatings { get; set; }
         private ActiveUser() 

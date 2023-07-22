@@ -28,6 +28,7 @@ namespace MachineLearning.Classes
             _dataHolder.TrainingUsers = (from user in _dataHolder.Users
                                          join trainData in _trainingData.Data on user.UserId equals trainData.UserId
                                          select user).ToList();
+            _AU = ActiveUser.GetInstance();
             _logger = new TextLog("BLI_Training", "Training_MAE_Data");
         }
         public void Run()
@@ -59,10 +60,11 @@ namespace MachineLearning.Classes
 
         private void _splitActiveUserRating(User user)
         {
-            _AU = ActiveUser.GetInstance();
             int halfRatingSize = user.Ratings.Count() / 2;
             _AU.TrainingRatings = user.Ratings.Take(halfRatingSize).ToList();
             _AU.TestRatings = user.Ratings.Skip(halfRatingSize).ToList();
+
+            _AU.UserId = user.UserId;
         }
         private void _setConfigs(int counterGenreTag , int counterSimilarities)
         {
