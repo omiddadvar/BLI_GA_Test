@@ -9,10 +9,12 @@ using MachineLearning.Interfaces;
 using MachineLearning.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Utility.Sqlite;
 
 namespace MachineLearning.Classes
 {
@@ -22,6 +24,8 @@ namespace MachineLearning.Classes
         private DataHolder _dataHolder;
         private ActiveUser _AU;
         private TextLog _logger;
+        private SqliteAccessor sqliteAccessor;
+        private DataTable _loggingDT;
         public TrainingProcess()
         {
             _trainingData = TrainingData.GetInstance();
@@ -31,6 +35,8 @@ namespace MachineLearning.Classes
                                          select user).ToList();
             _AU = ActiveUser.GetInstance();
             _logger = new TextLog("BLI_Training", "Training_MAE_Data");
+            _initializeDatatable();
+            _initializeSQLIte();
         }
         public void Run()
         {
@@ -53,10 +59,16 @@ namespace MachineLearning.Classes
                             Recall = new RecallCalculator(ind).Compute()
                         };
                         double user_MAE = new MAECalculator(ind).Compute();
-                        _LogResult(activeUser, criteria);
+
+                        Task.Run(() =>
+                        {
+                            _LogResult(activeUser, criteria);
+                            _DataTableLog(activeUser, criteria);
+                        });
                     }
                 }
             }
+            _InsertDataToSQLite();
         }
 
         private void _splitActiveUserRating(User user)
@@ -91,7 +103,30 @@ namespace MachineLearning.Classes
                 criteria.MAE , criteria.Precision , criteria.Recall , criteria.F1_Measure);
 
             _logger.AddLog(logText);
-
+        }
+        private void _DataTableLog(User AU, PrecisionCriterionParameters criteria)
+        {
+            _loggingDT.Rows.Add(AU.UserId , AU.Ratings.Count(), 
+                criteria.MAE , criteria.Recall , criteria.Precision , criteria.F1_Measure);
+        }
+        private void _initializeDatatable()
+        {
+            _loggingDT = new DataTable("TrainigData");
+            _loggingDT.Columns.Add(new DataColumn("UserId", typeof(int)));
+            _loggingDT.Columns.Add(new DataColumn("RatingCount", typeof(int)));
+            _loggingDT.Columns.Add(new DataColumn("MAE", typeof(double)));
+            _loggingDT.Columns.Add(new DataColumn("Recall", typeof(double)));
+            _loggingDT.Columns.Add(new DataColumn("Precision", typeof(double)));
+            _loggingDT.Columns.Add(new DataColumn("F1_Measure", typeof(double)));
+        }
+        private void _initializeSQLIte()
+        {
+            sqliteAccessor = new SqliteAccessor();
+            sqliteAccessor.CreateTable(_loggingDT);
+        }
+        private void _InsertDataToSQLite()
+        {
+            sqliteAccessor.InsertData(_loggingDT, dropTable: true);
         }
     }
 }

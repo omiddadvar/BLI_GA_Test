@@ -159,6 +159,10 @@
       <Project>{04f0149c-1a47-49c9-9288-8a712d132e4e}</Project>
       <Name>BLI_GA_Test</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Utility\Utility.csproj">
+      <Project>{B4E0FD47-C5AF-43A1-981B-8D9D0B92D78A}</Project>
+      <Name>Utility</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
