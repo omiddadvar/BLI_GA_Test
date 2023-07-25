@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLI_GA_Test", "BLI_GA_Test\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MachineLearning", "MachineLearning\MachineLearning.csproj", "{A1BBB3FD-E3C9-4A52-8824-D13417B6D765}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utility", "Utility\Utility.csproj", "{B4E0FD47-C5AF-43A1-981B-8D9D0B92D78A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,14 @@ Global
 		{A1BBB3FD-E3C9-4A52-8824-D13417B6D765}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A1BBB3FD-E3C9-4A52-8824-D13417B6D765}.Release|x64.ActiveCfg = Release|Any CPU
 		{A1BBB3FD-E3C9-4A52-8824-D13417B6D765}.Release|x64.Build.0 = Release|Any CPU
+		{B4E0FD47-C5AF-43A1-981B-8D9D0B92D78A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4E0FD47-C5AF-43A1-981B-8D9D0B92D78A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4E0FD47-C5AF-43A1-981B-8D9D0B92D78A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B4E0FD47-C5AF-43A1-981B-8D9D0B92D78A}.Debug|x64.Build.0 = Debug|Any CPU
+		{B4E0FD47-C5AF-43A1-981B-8D9D0B92D78A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4E0FD47-C5AF-43A1-981B-8D9D0B92D78A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4E0FD47-C5AF-43A1-981B-8D9D0B92D78A}.Release|x64.ActiveCfg = Release|Any CPU
+		{B4E0FD47-C5AF-43A1-981B-8D9D0B92D78A}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

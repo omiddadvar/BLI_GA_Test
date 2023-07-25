@@ -9,6 +9,7 @@ using MachineLearning.Interfaces;
 using MachineLearning.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -90,6 +91,7 @@ namespace MachineLearning.Classes
                 criteria.MAE , criteria.Precision , criteria.Recall , criteria.F1_Measure);
 
             _logger.AddLog(logText);
+
         }
     }
 }
