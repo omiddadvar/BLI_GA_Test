@@ -51,6 +51,7 @@ namespace MachineLearning.Classes
 
                         var bli = new BLI_Algorithm();
                         bli.CalculateUsersSimilarity_WithAU();
+                        bli.Run();
                         Individual ind = bli.RecommendedIndividual;
                         var criteria = new PrecisionCriterionParameters
                         {

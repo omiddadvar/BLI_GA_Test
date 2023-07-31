@@ -23,7 +23,7 @@ namespace MachineLearning.Classes
         private const int _MaxDataRows = 100000;
         private List<TrainingTestDataModel> _data;
         public List<TrainingTestDataModel> Data { get => _data; }
-        private const string _path = @"E:\Other\movielens\فثسفس\ml-100k\u1.base";
+        private const string _path = @"E:\Other\movielens\ml-100k\u1.base";
         /// <summary>
         /// 
         /// </summary>
