@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 namespace BLI_GA_Test.Classes.Genetic_Operators
 {
@@ -37,12 +38,26 @@ namespace BLI_GA_Test.Classes.Genetic_Operators
         }
         private void _calculate_SemCorrelation()
         {
-            foreach(var individual in _parents)
+            var threads = new List<Thread>();
+            foreach (var individual in _parents)
+            {
+                threads.Add(new Thread(() =>
+                {
+                    individual.SemCorrRating =
+                        new SemCorrRating(individual.MovieList)
+                        .Compute_SimilarityCorrelation();
+                }));
+            }
+            threads.ForEach(t => t.Start());
+            threads.ForEach(t => t.Join());
+            /*
+            foreach (var individual in _parents)
             {
                 individual.SemCorrRating = 
                     new SemCorrRating(individual.MovieList)
                     .Compute_SimilarityCorrelation();
             }
+            */
         }
     }
 }

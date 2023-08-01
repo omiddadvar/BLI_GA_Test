@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BLI_GA_Test.Classes.Genetic_Operators.Fitness
@@ -35,22 +36,31 @@ namespace BLI_GA_Test.Classes.Genetic_Operators.Fitness
             _compute_similarity();
             return _allUsers;
         }
-        private void _compute_pearson()
+        private  void _compute_pearson()
         {
+            var threads = new List<Thread>();
             foreach (var user in _allUsers)
             {
-                user.PearsonValue = new PearsonSim(_AU, user.UserId).Compute();
+                threads.Add(new Thread(() => { 
+                    user.PearsonValue = new PearsonSim(_AU, user.UserId).Compute(); }));
             }
+            threads.ForEach(t => t.Start());
+            threads.ForEach(t => t.Join());
         }
         private void _compute_similarity()
         {
+            var threads = new List<Thread>();
             var users = _allUsers
                         .Where(u => _userIDs_HaveCommonMovies_WithAU.Contains(u.UserId))
                         .ToList();
             foreach (var user in users)
             {
-                user.SimilarityWithActiveUser = new SatSimU(_AU, user).Compute();
+                threads.Add(new Thread(() => {
+                    user.SimilarityWithActiveUser = new SatSimU(_AU, user).Compute();
+                }));
             }
+            threads.ForEach(t => t.Start());
+            threads.ForEach(t => t.Join());
         }
     }
 }

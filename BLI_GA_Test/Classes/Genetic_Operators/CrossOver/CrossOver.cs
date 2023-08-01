@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BLI_GA_Test.Classes.Genetic_Operators
@@ -24,10 +25,19 @@ namespace BLI_GA_Test.Classes.Genetic_Operators
         public void Apply()
         {
             int numberOfIterations = RandomUtility.RandomNumber(1, _parentSize);
+            var threads = new List<Thread>();
+            for (int i = 0; i < numberOfIterations; i++)
+            {
+                threads.Add(new Thread(() => _crossOver_operation()));
+            }
+            threads.ForEach(t => t.Start());
+            threads.ForEach(t => t.Join());
+            /*
             for (int i = 0; i < numberOfIterations; i++)
             {
                 _crossOver_operation();
-            }
+            } 
+            */
         }
         private void _crossOver_operation()
         {
