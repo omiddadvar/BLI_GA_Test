@@ -46,12 +46,16 @@ namespace MachineLearning.Classes
                 {
                     foreach (var activeUser in _dataHolder.TrainingUsers)
                     {
+                        Console.WriteLine("activeUser : " + activeUser.UserId + "--i : " + i + "--j : " + j);
                         _setConfigs(i,j);
                         _splitActiveUserRating(activeUser);
 
                         var bli = new BLI_Algorithm();
+                        Console.WriteLine("BLI_Algorithm init");
                         bli.CalculateUsersSimilarity_WithAU();
+                        Console.WriteLine("BLI_Algorithm CalculateUsersSimilarity_WithAU");
                         bli.Run();
+                        Console.WriteLine("BLI_Algorithm Run");
                         Individual ind = bli.RecommendedIndividual;
                         var criteria = new PrecisionCriterionParameters
                         {

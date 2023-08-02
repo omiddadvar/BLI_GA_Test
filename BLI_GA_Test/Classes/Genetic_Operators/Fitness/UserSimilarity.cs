@@ -43,6 +43,7 @@ namespace BLI_GA_Test.Classes.Genetic_Operators.Fitness
             {
                 threads.Add(new Thread(() => { 
                     user.PearsonValue = new PearsonSim(_AU, user.UserId).Compute(); }));
+                //Console.WriteLine("user : " + user.UserId + " -- user.PearsonValue : " + user.PearsonValue);
             }
             threads.ForEach(t => t.Start());
             threads.ForEach(t => t.Join());
