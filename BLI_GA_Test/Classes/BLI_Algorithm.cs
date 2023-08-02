@@ -31,10 +31,15 @@ namespace BLI_GA_Test.Classes
         public void CalculateUsersSimilarity_WithAU()
         {
             _AU = ActiveUser.GetInstance();
+
+            Console.WriteLine("CalculateUsersSimilarity_WithAU , UserID : " + _AU.UserId);
+
             _dataHolder.Users_With_Similarity = new UserSimilarity(_AU).Compute();
         }
         public void Run()
         {
+
+            Console.WriteLine("BLI=> Run , UserID : " + _AU.UserId);
             _population = new PopulationGenerator().Generate();
 
             for (int i = 0; i < _configs.MaxNumberOfIterations_GA; i++)
@@ -43,14 +48,25 @@ namespace BLI_GA_Test.Classes
 
                 _newGeneration = _bestMem;
 
+                if(i % 10 == 0)
+                    Console.WriteLine("BLI => GA , UserID : " + _AU.UserId + " -- iteration : " + (i+1));
+
                 var geneticOperations = new GeneticOperations(ref _population, _topBestIndNumber);
                 geneticOperations.Apply();
                 _newGeneration = _newGeneration.Union(geneticOperations.GetNewGeneration()).ToList();
                 _population = _newGeneration;
             }
+            Console.WriteLine("BLI => GA_Finished , UserID : " + _AU.UserId);
             _findBestMem();
+
+            Console.WriteLine("BLI => Before Prediction , UserID : " + _AU.UserId);
+
             _predictBestIndividual();
+
+
             _SetRatingsValue_ForRecommended();
+
+            Console.WriteLine("BLI => All Done , UserID : " + _AU.UserId);
         }
         private void _findBestMem()
         {

@@ -41,21 +41,8 @@ namespace BLI_GA_Test.Classes.Genetic_Operators.Fitness
             var threads = new List<Thread>();
             foreach (var user in _allUsers)
             {
-                threads.Add(new Thread(() =>
-                {
-                    user.PearsonValue = new PearsonSim(_AU, user.UserId).Compute();
-                }));
-            }
-            for (int i = 0; i < _allUsers.Count(); i+= 50)
-            {
-                for (int j = i; j < Math.Min(_allUsers.Count() , i + 50); j++)
-                {
-                    threads[j].Start();
-                }
-                for (int j = i; j < Math.Min(_allUsers.Count(), i + 50); j++)
-                {
-                    threads[j].Join();
-                }
+                threads.Add(new Thread(() => { 
+                    user.PearsonValue = new PearsonSim(_AU, user.UserId).Compute(); }));
             }
         }
         private void _compute_similarity()
