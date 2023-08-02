@@ -41,11 +41,22 @@ namespace BLI_GA_Test.Classes.Genetic_Operators.Fitness
             var threads = new List<Thread>();
             foreach (var user in _allUsers)
             {
-                threads.Add(new Thread(() => { 
-                    user.PearsonValue = new PearsonSim(_AU, user.UserId).Compute(); }));
+                threads.Add(new Thread(() =>
+                {
+                    user.PearsonValue = new PearsonSim(_AU, user.UserId).Compute();
+                }));
             }
-            threads.ForEach(t => t.Start());
-            threads.ForEach(t => t.Join());
+            for (int i = 0; i < _allUsers.Count(); i+= 50)
+            {
+                for (int j = i; j < Math.Min(_allUsers.Count() , i + 50); j++)
+                {
+                    threads[j].Start();
+                }
+                for (int j = i; j < Math.Min(_allUsers.Count(), i + 50); j++)
+                {
+                    threads[j].Join();
+                }
+            }
         }
         private void _compute_similarity()
         {
@@ -59,8 +70,17 @@ namespace BLI_GA_Test.Classes.Genetic_Operators.Fitness
                     user.SimilarityWithActiveUser = new SatSimU(_AU, user).Compute();
                 }));
             }
-            threads.ForEach(t => t.Start());
-            threads.ForEach(t => t.Join());
+            for (int i = 0; i < _allUsers.Count(); i += 50)
+            {
+                for (int j = i; j < Math.Min(_allUsers.Count(), i + 50); j++)
+                {
+                    threads[j].Start();
+                }
+                for (int j = i; j < Math.Min(_allUsers.Count(), i + 50); j++)
+                {
+                    threads[j].Join();
+                }
+            }
         }
     }
 }

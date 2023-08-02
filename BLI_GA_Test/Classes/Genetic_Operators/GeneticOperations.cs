@@ -48,8 +48,17 @@ namespace BLI_GA_Test.Classes.Genetic_Operators
                         .Compute_SimilarityCorrelation();
                 }));
             }
-            threads.ForEach(t => t.Start());
-            threads.ForEach(t => t.Join());
+            for (int i = 0; i < _parents.Count(); i += 20)
+            {
+                for (int j = i; j < Math.Min(_parents.Count(), i + 20); j++)
+                {
+                    threads[j].Start();
+                }
+                for (int j = i; j < Math.Min(_parents.Count(), i + 20); j++)
+                {
+                    threads[j].Join();
+                }
+            }
             /*
             foreach (var individual in _parents)
             {

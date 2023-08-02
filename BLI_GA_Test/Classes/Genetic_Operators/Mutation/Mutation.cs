@@ -33,8 +33,17 @@ namespace BLI_GA_Test.Classes.Genetic_Operators
             {
                 threads.Add(new Thread(() => _mutation_operation()));
             }
-            threads.ForEach(t => t.Start());
-            threads.ForEach(t => t.Join());
+            for (int i = 0; i < mutationNumbers; i += 10)
+            {
+                for (int j = i; j < Math.Min(mutationNumbers, i + 10); j++)
+                {
+                    threads[j].Start();
+                }
+                for (int j = i; j < Math.Min(mutationNumbers, i + 10); j++)
+                {
+                    threads[j].Join();
+                }
+            }
             /*
             for(int i = 0; i < mutationNumbers; i++)
             {
